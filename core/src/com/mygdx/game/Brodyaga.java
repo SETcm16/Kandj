@@ -1,5 +1,5 @@
 package com.mygdx.game;
 
-public class Gorshok {
+public class Brodyaga {
 
 }
