@@ -26,10 +26,10 @@ public class KiSH extends ApplicationAdapter {
 
 	BitmapFont introFONT;
 
-	ScreenUlitsa screenUlitsa; //здесь будут окна
+	ScreenUlitsa screenUlitsa;//здесь будут окна
 
 
-	Texture brodyaga; //картинки обьявляем
+	Texture IMGbrodyaga; //картинки обьявляем
 
 	Brodyaga brod;
 
@@ -43,6 +43,11 @@ public class KiSH extends ApplicationAdapter {
 		this.touch = new Vector3();
 
 		generateFonts();
+
+		//загрузка персонажей
+		//IMGbrodyaga = new Texture();
+
+
 
 	}
 
