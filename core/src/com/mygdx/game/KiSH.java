@@ -13,13 +13,19 @@ import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.badlogic.gdx.math.Vector3;
 
 public class KiSH extends Game {
-    public static final int SCR_HEIGHT = 1080; //разрешение
-    public static final int SCR_WIDTH = 1920;
+    public static final int SCR_WIDTH = 1920; //разрешение
+    public static final int SCR_HEIGHT = 1080;
 
-    public static final int MENU = 0; //каждому окну присваем его порядковый номер
+    public static final int MENU = 0, ULITSA = 1, DOMSTARIKA = 2; //каждому окну присваем его порядковый номер
     public static int tekuschi_screen;
 
-    public static boolean zad_DVER; //проверка на выполнение задания
+    public static boolean zad_DVERSULITSI, zad_DVERPOGREBA;//проверка на выполнение задания
+    public static boolean zad_GRIBI, zad_BITVASOBOROTNEM;
+    public static boolean zad_GORA;
+    public static boolean zad_IGRAODIN, zad_IGREDVA, zad_IGRATRI;
+    public static boolean zad_MERTVECI;
+    public static boolean zad_VPOGREBEZHIZN;
+    public static boolean isHOCHETIGRAT;
 
     SpriteBatch batch; //рисует картинки
     OrthographicCamera camera; //преобразует разрешение
@@ -47,6 +53,8 @@ public class KiSH extends Game {
         generateFonts();
 
         screenMenu = new ScreenMenu(this);
+        screenUlitsa = new ScreenUlitsa(this);
+        screenDomStarika = new ScreenDomStarika(this);
         setScreen(screenMenu);
         //загрузка персонажей
         //IMGbrodyaga = new Texture();
@@ -58,7 +66,7 @@ public class KiSH extends Game {
         FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("fonts/introFONT.ttf"));
         FreeTypeFontGenerator.FreeTypeFontParameter parameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
         parameter.characters = "абвгдеёжзийклмнопрстуфхцчшщъыьэюяabcdefghijklmnopqrstuvwxyzАБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789][_!$%#@|\\/?-+=()*&.;:,{}\"´`'<>";
-        parameter.size = 400;
+        parameter.size = 150;
         parameter.color = Color.DARK_GRAY;
         parameter.borderColor = Color.CORAL;
         parameter.borderWidth = 2;

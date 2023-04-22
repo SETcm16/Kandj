@@ -7,6 +7,10 @@ public class ScreenUlitsa implements Screen {
     KiSH ki;
 
     Texture imgUlitsa;
+
+    public ScreenUlitsa(KiSH kiSH) {
+
+    }
     //Texture
 
     public void show() {

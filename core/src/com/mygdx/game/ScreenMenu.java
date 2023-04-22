@@ -14,14 +14,16 @@ public class ScreenMenu implements Screen {
 
     KishButton btnAbout, btnPlay, btnExit;
     Texture imgMenu;
+    Texture imgBrod;
 
     SpriteBatch batch;
 
     ScreenMenu(KiSH kish) {
         ki = kish;
         imgMenu = new Texture("foni/menu.jpg");
+        imgBrod = new Texture("geroi/brodyaga.png");
 
-        btnAbout = new KishButton("Об игре", ki.introFONT, 960, 160);
+        btnAbout = new KishButton("Об игре", ki.introFONT, SCR_WIDTH/2, SCR_HEIGHT/2+200);
         btnPlay = new KishButton("Играть", ki.introFONT, 900, 120);
         btnExit = new KishButton("Выйти", ki.introFONT, 840, 80);
     }
@@ -38,6 +40,7 @@ public class ScreenMenu implements Screen {
         ki.batch.setProjectionMatrix(ki.camera.combined);
         ki.batch.begin();
         ki.batch.draw(imgMenu, 0, 0, SCR_WIDTH, SCR_HEIGHT);
+        ki.batch.draw(imgBrod, SCR_WIDTH/2-400, SCR_HEIGHT/2-400, 300, 450);
         ki.batch.end();
     }
 

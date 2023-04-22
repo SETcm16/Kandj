@@ -4,6 +4,9 @@ import com.badlogic.gdx.Screen;
 
 public class ScreenDomStarika implements Screen {
 
+    public ScreenDomStarika(KiSH kiSH) {
+    }
+
     @Override
     public void show() {
 
