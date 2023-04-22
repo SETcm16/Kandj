@@ -1,57 +1,62 @@
 package com.mygdx.game;
 
 import static com.mygdx.game.KiSH.MENU;
+import static com.mygdx.game.KiSH.SCR_HEIGHT;
+import static com.mygdx.game.KiSH.SCR_WIDTH;
 
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 public class ScreenMenu implements Screen {
-    final Kandj j;
-    public static int current_screen;
+    KiSH ki;
+    public static int tekuschi_screen;
 
     KishButton btnAbout, btnPlay, btnExit;
     Texture imgMenu;
 
-    public ScreenMenu(Kandj j) {
-        this.j = j;
+    SpriteBatch batch;
+
+    ScreenMenu(KiSH kish) {
+        ki = kish;
         imgMenu = new Texture("foni/menu.jpg");
 
-        //btnAbout = new KishButton("Об игре", j.introFONT, 960, 160);
-        //btnPlay = new KishButton("Играть", j.introFONT, 900, 120);
-        //btnExit = new KishButton("Выйти", j.introFONT, 840, 80);
+        btnAbout = new KishButton("Об игре", ki.introFONT, 960, 160);
+        btnPlay = new KishButton("Играть", ki.introFONT, 900, 120);
+        btnExit = new KishButton("Выйти", ki.introFONT, 840, 80);
     }
 
 
-    @Override
+
     public void show() {
-        current_screen = MENU;
+        tekuschi_screen = MENU;
     }
 
-    @Override
+
     public void render(float delta) {
+        ki.camera.update();
+        ki.batch.setProjectionMatrix(ki.camera.combined);
+        ki.batch.begin();
+        ki.batch.draw(imgMenu, 0, 0, SCR_WIDTH, SCR_HEIGHT);
+        ki.batch.end();
     }
 
-    @Override
     public void resize(int width, int height) {
 
     }
 
-    @Override
     public void pause() {
 
     }
 
-    @Override
     public void resume() {
 
     }
 
-    @Override
     public void hide() {
 
     }
 
-    @Override
     public void dispose() {
         imgMenu.dispose();
     }
