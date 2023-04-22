@@ -1,9 +1,14 @@
 package com.mygdx.game;
 
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.graphics.Texture;
 
 public class ScreenUlitsa implements Screen {
-    @Override
+    KiSH ki;
+
+    Texture imgUlitsa;
+    //Texture
+
     public void show() {
 
     }
