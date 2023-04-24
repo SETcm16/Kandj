@@ -1,47 +1,45 @@
 package com.mygdx.game;
 
+import static com.mygdx.game.KiSH.SCR_WIDTH;
+
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.GlyphLayout;
 
 public class KishButton {
-    float x;
-    float y;
-    float width;
-    float height;
-    float brodIdetTudaPoX;
+    float x, y;
+    float width, height;
     String text;
-    Texture img;
+    BitmapFont font;
+    boolean isScrCenter;
 
-    KishButton(String text, BitmapFont font, float x, float y){
+    public KishButton(BitmapFont font, String text, float x, float y, boolean isScrCenter) {
+        this.x = x;
+        this.y = y;
         this.text = text;
-        this.x = x;
-        this.y = y;
+        this.font = font;
         GlyphLayout gl = new GlyphLayout(font, text);
-        this.width = gl.width;
-        this.height = gl.height;
-        this.x -= this.width / 2;
+        width = gl.width;
+        height = gl.height;
+        this.isScrCenter = isScrCenter;
     }
 
-    KishButton(float x, float y, float width, float height, float brodIdetTudaPoX){
+    public void setText(String text) {
+        this.text = text;
+    }
+
+    public KishButton(BitmapFont font, String text, float x, float y) {
         this.x = x;
         this.y = y;
-        this.width = width;
-        this.height = height;
-        this.brodIdetTudaPoX = brodIdetTudaPoX;
+        this.text = text;
+        this.font = font;
+        GlyphLayout gl = new GlyphLayout(font, text);
+        width = gl.width;
+        height = gl.height;
     }
 
-    KishButton(float x, float y, float width, float height, float brodIdetTudaPoX, Texture img){
-        this.x = x;
-        this.y = y;
-        this.width = width;
-        this.height = height;
-        this.brodIdetTudaPoX = brodIdetTudaPoX;
-        this.img = img;
-    }
 
-    boolean hit(float tx, float ty) {
-        if(text == null) return tx > this.x && tx < this.x + this.width && ty > this.y && ty < this.y + this.height;
-        return tx > this.x && tx < this.x + this.width && ty < this.y && ty > this.y - this.height;
+    boolean hit(float tx, float ty){
+        return x < tx && tx < x+width && y-height < ty && ty < y;
     }
 }
