@@ -3,6 +3,7 @@ package com.mygdx.game;
 import com.badlogic.gdx.Screen;
 
 public class ScreenDomStarika implements Screen {
+    KiSH ki;
 
     public ScreenDomStarika(KiSH kiSH) {
     }

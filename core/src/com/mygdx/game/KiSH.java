@@ -12,7 +12,6 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.badlogic.gdx.math.Vector3;
 
-import sun.awt.windows.WPathGraphics;
 
 public class KiSH extends Game {
     public static final int SCR_WIDTH = 1920; //разрешение
@@ -28,7 +27,7 @@ public class KiSH extends Game {
     public static boolean zad_MERTVECI;
     public static boolean zad_VPOGREBEZHIZN;
     public static boolean isHOCHETIGRAT;
-    public WPathGraphics font;
+
 
     SpriteBatch batch; //рисует картинки
     OrthographicCamera camera; //преобразует разрешение
@@ -45,7 +44,7 @@ public class KiSH extends Game {
     Texture IMGbrodyaga; //картинки обьявляем
 
     Brod brod;
-    KishButton btnGoMenu; //идем в меню
+    TextButton btnGoMenu; //идем в меню
 
     @Override
     public void create () {
