@@ -14,8 +14,8 @@ import com.badlogic.gdx.math.Vector3;
 
 
 public class KiSH extends Game {
-    public static final int SCR_WIDTH = 1920; //разрешение
-    public static final int SCR_HEIGHT = 1080;
+    public static final float SCR_WIDTH = 1920; //разрешение
+    public static final float SCR_HEIGHT = 1080;
 
     public static final int MENU = 0, ULITSA = 1, DOMSTARIKA = 2; //каждому окну присваем его порядковый номер
     public static int tekuschi_screen;
@@ -59,8 +59,6 @@ public class KiSH extends Game {
         screenUlitsa = new ScreenUlitsa(this);
         screenDomStarika = new ScreenDomStarika(this);
         setScreen(screenMenu);
-        //загрузка персонажей
-        //IMGbrodyaga = new Texture();
 
     }
 

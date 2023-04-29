@@ -1,5 +1,6 @@
 package com.mygdx.game;
 
+import static com.mygdx.game.KiSH.SCR_HEIGHT;
 import static com.mygdx.game.KiSH.SCR_WIDTH;
 
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
@@ -8,29 +9,10 @@ import com.badlogic.gdx.graphics.g2d.GlyphLayout;
 public class TextButton {
     float x, y;
     float width, height;
-    String text;
     BitmapFont font;
-    boolean isScrCenter;
-    boolean textButton;
+    String text;
 
-    public TextButton(BitmapFont font, String text, float x, float y, boolean isScrCenter) {
-        this.x = x;
-        this.y = y;
-        this.text = text;
-        this.font = font;
-        GlyphLayout gl = new GlyphLayout(font, text);
-        width = gl.width;
-        height = gl.height;
-        this.isScrCenter = isScrCenter;
-        textToCenter();
-    }
-
-    public void setText(String text) {
-        this.text = text;
-        textToCenter();
-    }
-
-    public TextButton(BitmapFont font, String text, float x, float y) {
+    public TextButton(BitmapFont font, String text, float x, float y){
         this.x = x;
         this.y = y;
         this.text = text;
@@ -40,17 +22,18 @@ public class TextButton {
         height = gl.height;
     }
 
-
-    private void textToCenter(){
-        if(isScrCenter) {
-            GlyphLayout gl = new GlyphLayout(font, text);
-            width = gl.width;
-            this.x = 0;
-        }
+    public TextButton(BitmapFont font, String text, float y){
+        this.y = y;
+        this.text = text;
+        this.font = font;
+        GlyphLayout gl = new GlyphLayout(font, text);
+        width = gl.width;
+        height = gl.height;
+        x = SCR_WIDTH/2-width/2;
     }
 
-    boolean hit(float tx, float ty){
-        return tx > x && tx < x + width && ty > y-height && ty < y;
+    boolean hit(float tx, float ty) {
+        return x<tx && tx<x+width && y-height<ty && ty<y;
     }
 }
 

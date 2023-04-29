@@ -3,17 +3,21 @@ package com.mygdx.game;
 import static com.mygdx.game.KiSH.SCR_HEIGHT;
 import static com.mygdx.game.KiSH.SCR_WIDTH;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Texture;
 
 public class ScreenAbout implements Screen {
     KiSH ki;
+    Texture imgAbout;
+    TextButton btnBack;
 
-    Texture imgMenu;
+    String textAbout = "Игра\n" +
+            "была";
 
-    public ScreenAbout(KiSH kish){
-        ki = kish;
-        imgMenu = new Texture("foni/menu.jpg");
+    public ScreenAbout(KiSH kiSH) {
+        ki = kiSH;
+        imgAbout = new Texture("foni/");
     }
 
     @Override
@@ -23,11 +27,21 @@ public class ScreenAbout implements Screen {
 
     @Override
     public void render(float delta) {
+        // касания экрана/клики мышью
+        if(Gdx.input.justTouched()) {
+            ki.touch.set(Gdx.input.getX(), Gdx.input.getY(), 0);
+            ki.camera.unproject(ki.touch);
+            if(btnBack.hit(ki.touch.x, ki.touch.y)){
+                ki.setScreen(ki.screenMenu);
+            }
+        }
+
         ki.camera.update();
         ki.batch.setProjectionMatrix(ki.camera.combined);
         ki.batch.begin();
-        ki.batch.draw(imgMenu, 0, 0, SCR_WIDTH, SCR_HEIGHT);
-        //ki.font.draw(ki.batch, textAbout);
+        ki.batch.draw(imgAbout, 0, 0, SCR_WIDTH, SCR_HEIGHT);
+        //ki.font.draw(ki.batch, textAbout, 50, 650);
+        btnBack.font.draw(ki.batch, btnBack.text, btnBack.x, btnBack.y);
         ki.batch.end();
     }
 
@@ -53,6 +67,6 @@ public class ScreenAbout implements Screen {
 
     @Override
     public void dispose() {
-
+        imgAbout.dispose();
     }
 }
