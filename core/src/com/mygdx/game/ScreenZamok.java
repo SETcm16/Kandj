@@ -7,20 +7,18 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Texture;
 
-public class ScreenDomStarika implements Screen {
+public class ScreenZamok implements Screen {
     KiSH ki;
-
-    Texture imgDomStarika;
-    Texture imgBrod;
 
     TextButton btnEXIT;
 
-    public ScreenDomStarika(KiSH kiSH) {
+    Texture imgZamok;
+
+    public ScreenZamok(KiSH kiSH){
         ki = kiSH;
-        imgBrod = new Texture("geroi/brodyaga.png");
-        imgDomStarika = new Texture("foni/domstarika.png");
+        imgZamok = new Texture("foni/zamok.png");
         btnEXIT = new TextButton(ki.gameFONT, " ВЫЙТИ\n" +
-                                                  "В МЕНЮ", 860);
+                "В МЕНЮ", 860);
     }
 
     @Override
@@ -34,15 +32,14 @@ public class ScreenDomStarika implements Screen {
             ki.touch.set(Gdx.input.getX(), Gdx.input.getY(), 0);
             ki.camera.unproject(ki.touch);
             if (btnEXIT.hit(ki.touch.x/2, ki.touch.y)) {
-                ki.setScreen(ki.screenZamok);
+                ki.setScreen(ki.screenMenu);
             }
         }
 
         ki.camera.update();
         ki.batch.setProjectionMatrix(ki.camera.combined);
         ki.batch.begin();
-        ki.batch.draw(imgDomStarika, 0,0, SCR_WIDTH, SCR_HEIGHT);
-        ki.batch.draw(imgBrod, 10, 50, 340, 722);
+        ki.batch.draw(imgZamok, 0,0, SCR_WIDTH, SCR_HEIGHT);
         btnEXIT.font.draw(ki.batch, btnEXIT.text, btnEXIT.x*500/251, btnEXIT.y);
         ki.batch.end();
     }

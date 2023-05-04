@@ -1,7 +1,6 @@
 package com.mygdx.game;
 
 
-import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
@@ -34,11 +33,17 @@ public class KiSH extends Game {
     Vector3 touch; //отслеживает касания
 
     BitmapFont introFONT;
+    BitmapFont aboutFONT;
+    BitmapFont gameFONT;
+    BitmapFont exitbtnFONT;
+    BitmapFont dialogFONT;
 
     ScreenUlitsa screenUlitsa;//здесь будут окна
     ScreenMenu screenMenu;
-    ScreenDomStarika screenDomStarika;
     ScreenAbout screenAbout;
+    ScreenDomStarika screenDomStarika;
+    ScreenStarikNaPoroge screenStarikNaPoroge;
+    ScreenZamok screenZamok;
 
 
     Texture IMGbrodyaga; //картинки обьявляем
@@ -57,7 +62,10 @@ public class KiSH extends Game {
 
         screenMenu = new ScreenMenu(this);
         screenUlitsa = new ScreenUlitsa(this);
+        screenAbout = new ScreenAbout(this);
         screenDomStarika = new ScreenDomStarika(this);
+        screenStarikNaPoroge = new ScreenStarikNaPoroge(this);
+        screenZamok = new ScreenZamok(this);
         setScreen(screenMenu);
 
     }
@@ -67,11 +75,32 @@ public class KiSH extends Game {
         FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("fonts/introFONT.ttf"));
         FreeTypeFontGenerator.FreeTypeFontParameter parameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
         parameter.characters = "абвгдеёжзийклмнопрстуфхцчшщъыьэюяabcdefghijklmnopqrstuvwxyzАБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789][_!$%#@|\\/?-+=()*&.;:,{}\"´`'<>";
-        parameter.size = 150;
+        parameter.size = 120;
         parameter.color = Color.DARK_GRAY;
         parameter.borderColor = Color.CORAL;
-        parameter.borderWidth = 2;
+        parameter.borderWidth = 3;
         introFONT = generator.generateFont(parameter);
+        parameter.size = 60;
+        parameter.color = Color.FOREST;
+        parameter.borderColor = Color.BLACK;
+        parameter.borderWidth = 2;
+        aboutFONT = generator.generateFont(parameter);
+        parameter.size = 30;
+        parameter.borderWidth = 0;
+        parameter.color = Color.FIREBRICK;
+        gameFONT = generator.generateFont(parameter);
+        parameter.size = 50;
+        parameter.color = Color.BROWN;
+        exitbtnFONT = generator.generateFont(parameter);
+        generator.dispose();
+
+        FreeTypeFontGenerator generator1 = new FreeTypeFontGenerator(Gdx.files.internal("fonts/about.ttf"));
+        FreeTypeFontGenerator.FreeTypeFontParameter parameter1 = new FreeTypeFontGenerator.FreeTypeFontParameter();
+        parameter.characters = "абвгдеёжзийклмнопрстуфхцчшщъыьэюяabcdefghijklmnopqrstuvwxyzАБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789][_!$%#@|\\/?-+=()*&.;:,{}\"´`'<>";
+        parameter.size = 150;
+        parameter.color = Color.FOREST;
+        dialogFONT = generator1.generateFont(parameter1);
+
     }
 
     @Override

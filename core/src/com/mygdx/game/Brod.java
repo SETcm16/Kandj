@@ -1,23 +1,24 @@
 package com.mygdx.game;
 
-import static com.mygdx.game.KiSH.SCR_HEIGHT;
-import static com.mygdx.game.KiSH.SCR_WIDTH;
-
-import com.badlogic.gdx.utils.TimeUtils;
-
 
 public class Brod {
-    float x, vx;
-    float width;
+    float x;
+    float speed = 20;
+    public float vx = 1;
+    Brod brod;
 
-    void vihodZaEkran() {
-        if(x<0+width/2) {
-            x = 0+width/2;
-            vx = 0;
-        }
-        if(x>SCR_WIDTH-width/2) {
-            x = SCR_WIDTH-width/2;
-            vx = 0;
-        }
+    public Brod(float x, float speed){
+        this.x = x;
+        x = 50;
+        this.speed = speed;
+    }
+
+    public void move(float x){
+        x += vx*speed;
+    }
+
+    public float getX(){
+        return x;
     }
 }
+

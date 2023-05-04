@@ -5,6 +5,7 @@ import static com.mygdx.game.KiSH.SCR_WIDTH;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
@@ -16,12 +17,16 @@ public class ScreenMenu implements Screen {
 
     SpriteBatch batch;
 
+    Sound menuBtnSnd;
+
     ScreenMenu(KiSH kish) {
         ki = kish;
         imgMenu = new Texture("foni/menu.jpg");
-        btnPlay = new TextButton(ki.introFONT, "Начать историю", 700);
-        btnAbout = new TextButton(ki.introFONT, "Предыстория", 500);
-        btnExit = new TextButton(ki.introFONT, "Выйти", 300);
+        btnPlay = new TextButton(ki.introFONT, "Начать историю", 520);
+        btnAbout = new TextButton(ki.introFONT, "Предыстория", 335);
+        btnExit = new TextButton(ki.introFONT, "Выйти", 150);
+
+        menuBtnSnd = Gdx.audio.newSound(Gdx.files.internal("sounds/buttonsound.mp3"));
     }
 
     public void show() {
@@ -34,9 +39,11 @@ public class ScreenMenu implements Screen {
             ki.touch.set(Gdx.input.getX(), Gdx.input.getY(), 0);
             ki.camera.unproject(ki.touch);
             if(btnPlay.hit(ki.touch.x, ki.touch.y)){
+                menuBtnSnd.play();
                 ki.setScreen(ki.screenUlitsa);
             }
-             if(btnAbout.hit(ki.touch.x, ki.touch.y)){
+            if(btnAbout.hit(ki.touch.x, ki.touch.y)){
+                menuBtnSnd.play();
                 ki.setScreen(ki.screenAbout);
             }
             if(btnExit.hit(ki.touch.x, ki.touch.y)){

@@ -23,7 +23,7 @@ public class TextButton {
     }
 
     public TextButton(BitmapFont font, String text, float y){
-        this.y = y;
+        this.y = y*5/4;
         this.text = text;
         this.font = font;
         GlyphLayout gl = new GlyphLayout(font, text);
