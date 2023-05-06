@@ -15,7 +15,7 @@ public class ScreenAbout implements Screen {
 
     String textAbout = "Вы играете за Бродягу, которому нужны\n" +
                         "всего лишь пропитание и ночлег\n\n" +
-                       "Игры была разработана по мотивам песен\n" +
+                       "Игра была разработана по мотивам песен\n" +
                         "группы Король и Шут\n\n\n" +
                           "Приятной игры!";
 
@@ -78,6 +78,6 @@ public class ScreenAbout implements Screen {
 
     @Override
     public void dispose() {
-        imgDomStarika.dispose();
+        imgAbout.dispose();
     }
 }

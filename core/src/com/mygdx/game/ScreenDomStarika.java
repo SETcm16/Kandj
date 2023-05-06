@@ -20,7 +20,7 @@ public class ScreenDomStarika implements Screen {
         imgBrod = new Texture("geroi/brodyaga.png");
         imgDomStarika = new Texture("foni/domstarika.png");
         btnEXIT = new TextButton(ki.gameFONT, " ВЫЙТИ\n" +
-                                                  "В МЕНЮ", 860);
+                                              "В МЕНЮ", 860);
     }
 
     @Override
@@ -69,6 +69,7 @@ public class ScreenDomStarika implements Screen {
 
     @Override
     public void dispose() {
-
+        imgDomStarika.dispose();
+        imgBrod.dispose();
     }
 }

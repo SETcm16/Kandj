@@ -77,6 +77,7 @@ public class ScreenStarikNaPoroge implements Screen {
 
     @Override
     public void dispose() {
-
+        imgStarikNaPoroge.dispose();
+        imgBrod.dispose();
     }
 }

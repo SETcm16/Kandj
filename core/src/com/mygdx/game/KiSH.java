@@ -37,6 +37,7 @@ public class KiSH extends Game {
     BitmapFont gameFONT;
     BitmapFont exitbtnFONT;
     BitmapFont dialogFONT;
+    BitmapFont zamokFONT;
 
     ScreenUlitsa screenUlitsa;//здесь будут окна
     ScreenMenu screenMenu;
@@ -44,12 +45,18 @@ public class KiSH extends Game {
     ScreenDomStarika screenDomStarika;
     ScreenStarikNaPoroge screenStarikNaPoroge;
     ScreenZamok screenZamok;
-
-
-    Texture IMGbrodyaga; //картинки обьявляем
+    ScreenPogrebOne screenPogrebOne;
+    ScreenLes screenLes;
+    ScreenDomLesnikaLes screenDomLesnikaLes;
+    ScreenDomLesnika screenDomLesnika;
+    ScreenGribi screenGribi;
+    ScreenBlizGori screenBlizGori;
+    ScreenGora screenGora;
+    ScreenKamen screenKamen;
 
     Brod brod;
-    TextButton btnGoMenu; //идем в меню
+    Texture[] imgBrod = new Texture[3];
+
 
     @Override
     public void create () {
@@ -60,12 +67,24 @@ public class KiSH extends Game {
 
         generateFonts();
 
+        imgBrod[0] = new Texture("geroi/brodyaga.png");
+        imgBrod[1] = new Texture("geroi/brod1.png");
+        imgBrod[2] = new Texture("geroi/brod2.png");
         screenMenu = new ScreenMenu(this);
         screenUlitsa = new ScreenUlitsa(this);
         screenAbout = new ScreenAbout(this);
         screenDomStarika = new ScreenDomStarika(this);
         screenStarikNaPoroge = new ScreenStarikNaPoroge(this);
         screenZamok = new ScreenZamok(this);
+        screenPogrebOne = new ScreenPogrebOne(this);
+        screenLes = new ScreenLes(this);
+        screenDomLesnikaLes = new ScreenDomLesnikaLes(this);
+        screenDomLesnika = new ScreenDomLesnika(this);
+        screenGribi = new ScreenGribi(this);
+        screenBlizGori = new ScreenBlizGori(this);
+        screenGora = new ScreenGora(this);
+        screenKamen = new ScreenKamen(this);
+        brod = new Brod(120, 215, 130, 300);
         setScreen(screenMenu);
 
     }
@@ -92,20 +111,20 @@ public class KiSH extends Game {
         parameter.size = 50;
         parameter.color = Color.BROWN;
         exitbtnFONT = generator.generateFont(parameter);
+        parameter.size = 90;
+        parameter.color = Color.WHITE;
+        parameter.borderColor = Color.BLACK;
+        parameter.borderWidth = 2;
+        zamokFONT = generator.generateFont(parameter);
         generator.dispose();
-
-        FreeTypeFontGenerator generator1 = new FreeTypeFontGenerator(Gdx.files.internal("fonts/about.ttf"));
-        FreeTypeFontGenerator.FreeTypeFontParameter parameter1 = new FreeTypeFontGenerator.FreeTypeFontParameter();
-        parameter.characters = "абвгдеёжзийклмнопрстуфхцчшщъыьэюяabcdefghijklmnopqrstuvwxyzАБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789][_!$%#@|\\/?-+=()*&.;:,{}\"´`'<>";
-        parameter.size = 150;
-        parameter.color = Color.FOREST;
-        dialogFONT = generator1.generateFont(parameter1);
-
     }
 
     @Override
     public void dispose () {
         batch.dispose();
+        for (int i = 0; i < imgBrod.length; i++) {
+            imgBrod[i].dispose();
+        }
     }
 
 }
