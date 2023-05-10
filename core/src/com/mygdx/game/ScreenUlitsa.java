@@ -5,8 +5,12 @@ import static com.mygdx.game.KiSH.SCR_WIDTH;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.scenes.scene2d.Stage;
+
+import java.awt.TextField;
 
 public class ScreenUlitsa implements Screen{
     KiSH ki;
@@ -15,11 +19,22 @@ public class ScreenUlitsa implements Screen{
 
     TextButton btnEXIT;
 
+    String text1 = new String();
+    String text2 = new String();
+
+    int n = 0; //кол-во проигрышей музыки
+
     public ScreenUlitsa(KiSH kiSH) {
         ki = kiSH;
-        imgUlitsa = new Texture("foni/ulitsa1.jpg");
+        imgUlitsa = new Texture("foni/ulitsa1.png");
         btnEXIT = new TextButton(ki.gameFONT, " ВЫЙТИ\n" +
-                "В МЕНЮ", 860);
+                "В МЕНЮ", 850);
+
+        text1 = "-ПРОВАЛИВАЙ, ТЕБЕ\n" +
+                "ТУТ НЕ МЕСТО!";
+        text2 = "-ТЫ КТО ТАКОЙ?\n" +
+                "Я ТЕБЯ НЕ ЗВАЛ!\n" +
+                "ИДИ ОТСЮДА";
     }
 
     public void show() {
@@ -32,7 +47,7 @@ public class ScreenUlitsa implements Screen{
             ki.touch.set(Gdx.input.getX(), Gdx.input.getY(), 0);
             ki.camera.unproject(ki.touch);
             if (btnEXIT.hit(ki.touch.x / 2, ki.touch.y)) {
-                ki.setScreen(ki.screenStarikNaPoroge);
+                ki.setScreen(ki.screenMenu);
             }
             //передвижение
             ki.brod.goTo(ki.touch.x);
@@ -40,15 +55,22 @@ public class ScreenUlitsa implements Screen{
 
         // события игры
         ki.brod.move();
-        /*if(Gdx.input.getX()<1460 && Gdx.input.getX()>1200){
+
+        if(ki.brod.x < 1800 && ki.brod.x > 1625 && ki.touch.x > 1625 && ki.touch.x < 1800){
             ki.setScreen(ki.screenStarikNaPoroge);
-        }*/
+        }
 
         // отрисовка
         ki.camera.update();
         ki.batch.setProjectionMatrix(ki.camera.combined);
         ki.batch.begin();
         ki.batch.draw(imgUlitsa, 0,0, SCR_WIDTH, SCR_HEIGHT);
+        if(ki.brod.x < 310 && ki.brod.x > 170 && ki.touch.x > 170 && ki.touch.x < 310){
+            ki.dverFONT.draw(ki.batch, text1, 150, 650);
+        }
+        if(ki.brod.x < 1220 && ki.brod.x > 1080 && ki.touch.x > 1080 && ki.touch.x < 1220){
+            ki.dverFONT.draw(ki.batch, text2, 1050, 650);
+        }
         ki.batch.draw(ki.imgBrod[ki.brod.faza], ki.brod.getX(), ki.brod.y, ki.brod.width, ki.brod.height, 0, 0, 253, 587, ki.brod.flip(), false);
         btnEXIT.font.draw(ki.batch, btnEXIT.text, btnEXIT.x*500/251, btnEXIT.y);
         ki.batch.end();

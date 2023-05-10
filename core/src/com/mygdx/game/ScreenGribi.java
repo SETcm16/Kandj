@@ -22,7 +22,7 @@ public class ScreenGribi implements Screen {
         gribi = new Texture("grib.png");
 
         btnEXIT = new TextButton(ki.gameFONT, " ВЫЙТИ\n" +
-                                              "В МЕНЮ", 860);
+                "В МЕНЮ", 850);
     }
 
     @Override
@@ -44,6 +44,7 @@ public class ScreenGribi implements Screen {
         ki.batch.setProjectionMatrix(ki.camera.combined);
         ki.batch.begin();
         ki.batch.draw(imgGribi, 0, 0, SCR_WIDTH, SCR_HEIGHT);
+        ki.batch.draw(gribi, 150, 130, 100, 100);
         btnEXIT.font.draw(ki.batch, btnEXIT.text, btnEXIT.x*500/251, btnEXIT.y);
         ki.batch.end();
     }

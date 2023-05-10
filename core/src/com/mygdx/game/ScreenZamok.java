@@ -22,7 +22,7 @@ public class ScreenZamok implements Screen {
         imgZamok = new Texture("foni/zamok.png");
 
         btnEXIT = new TextButton(ki.gameFONT, " ВЫЙТИ\n" +
-                                              "В МЕНЮ", 860);
+                "В МЕНЮ", 850);
         odin = new TextButton(ki.zamokFONT, "1", 1000, 800);
         dva = new TextButton(ki.zamokFONT, "2", 1100, 800);
     }

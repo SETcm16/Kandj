@@ -20,7 +20,7 @@ public class ScreenPogrebOne implements Screen {
         imgPogrebOne = new Texture("foni/pogrebOne.png");
 
         btnEXIT = new TextButton(ki.gameFONT, " ВЫЙТИ\n" +
-                                              "В МЕНЮ", 860);
+                "В МЕНЮ", 850);
     }
 
     @Override

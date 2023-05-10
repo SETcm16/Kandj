@@ -1,7 +1,10 @@
 package com.mygdx.game;
 
 
+import static com.mygdx.game.KiSH.SCR_WIDTH;
+
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Sound;
 
 public class Brod {
     float x, y;
@@ -11,7 +14,7 @@ public class Brod {
     public float direct = RIGHT; // -1 или 1
     public static final int STAY = 0, GO = 1;
     public int state = STAY;
-    int faza = 1, nFaz = 2;
+    int faza = 1, nFaz = 4;
     float target;
 
     public Brod(float x, float y, float width, float height) {
@@ -34,11 +37,22 @@ public class Brod {
         if(state == STAY) {
             faza = 0;
         }
+
+        if(x<width/2){
+            x = width/2;
+            speed = 0;
+            state = STAY;
+        } else if (x > SCR_WIDTH - width/2) {
+            x = SCR_WIDTH - width/2;
+            speed = 0;
+            state = STAY;
+        }
     }
+
 
     public void goTo(float tx) {
         target = tx;
-        speed = 20;
+        speed = 7;
         state = GO;
         if(tx > x) {
             direct = RIGHT;
@@ -58,5 +72,6 @@ public class Brod {
             return false;
         }
     }
+
 }
 

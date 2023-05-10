@@ -15,21 +15,24 @@ public class ScreenStarikNaPoroge implements Screen {
 
     TextButton btnEXIT;
 
-    String textDeda = "Чего тебе\n" +
-                      "внучок?";
-    String textBrod = "Я ищу ночлег\n" +
-            "и я очень устал";
-    String textDeda1 = "Гостям я рад,\n" +
-            "ты будешь сыт\n" +
-            "и отдохнешь\n" +
-            "у деда на печи ";
+    String[] text = new String[N];
+
+    int n;
+    public static final int N = 3;
 
     public ScreenStarikNaPoroge(KiSH kiSH){
         ki = kiSH;
         imgStarikNaPoroge = new Texture("foni/starikNaPoroge.png");
         imgBrod = new Texture("geroi/brodyaga.png");
         btnEXIT = new TextButton(ki.gameFONT, " ВЫЙТИ\n" +
-                                                   "В МЕНЮ", 860);
+                "В МЕНЮ", 850);
+        text[0] = "-Чего тебе\n" +
+                "внучок?";
+        text[1] = "-Я ищу ночлег\n" +
+                "и я очень устал";
+        text[2] = "-Гостям я рад,\n" +
+                "ты будешь сыт\n" +
+                "и отдохнешь";
     }
     @Override
     public void show() {
@@ -41,7 +44,11 @@ public class ScreenStarikNaPoroge implements Screen {
         if(Gdx.input.justTouched()) {
             ki.touch.set(Gdx.input.getX(), Gdx.input.getY(), 0);
             ki.camera.unproject(ki.touch);
+            n++;
             if (btnEXIT.hit(ki.touch.x/2, ki.touch.y)) {
+                ki.setScreen(ki.screenMenu);
+            }
+            if(n == N){
                 ki.setScreen(ki.screenDomStarika);
             }
         }
@@ -50,9 +57,12 @@ public class ScreenStarikNaPoroge implements Screen {
         ki.batch.setProjectionMatrix(ki.camera.combined);
         ki.batch.begin();
         ki.batch.draw(imgStarikNaPoroge, 0,0, SCR_WIDTH, SCR_HEIGHT);
+        if(n==0 || n==2) {
+            ki.dverFONT.draw(ki.batch, text[n], 1550, 650);
+        } else ki.dverFONT.draw(ki.batch, text[1], 1500, 550);
         btnEXIT.font.draw(ki.batch, btnEXIT.text, btnEXIT.x*500/251, btnEXIT.y);
         ki.batch.end();
-
+        ki.brod.x = 200;
     }
 
     @Override

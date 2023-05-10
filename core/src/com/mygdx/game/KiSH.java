@@ -3,6 +3,7 @@ package com.mygdx.game;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
@@ -36,8 +37,9 @@ public class KiSH extends Game {
     BitmapFont aboutFONT;
     BitmapFont gameFONT;
     BitmapFont exitbtnFONT;
-    BitmapFont dialogFONT;
     BitmapFont zamokFONT;
+    BitmapFont dverFONT;
+    BitmapFont dialogDomStarikFONT;
 
     ScreenUlitsa screenUlitsa;//здесь будут окна
     ScreenMenu screenMenu;
@@ -53,10 +55,11 @@ public class KiSH extends Game {
     ScreenBlizGori screenBlizGori;
     ScreenGora screenGora;
     ScreenKamen screenKamen;
+    ScreenGoraOver screenGoraOver;
+    ScreenGoraDva screenGoraDva;
 
     Brod brod;
-    Texture[] imgBrod = new Texture[3];
-
+    Texture[] imgBrod = new Texture[5];
 
     @Override
     public void create () {
@@ -70,6 +73,8 @@ public class KiSH extends Game {
         imgBrod[0] = new Texture("geroi/brodyaga.png");
         imgBrod[1] = new Texture("geroi/brod1.png");
         imgBrod[2] = new Texture("geroi/brod2.png");
+        imgBrod[3] = new Texture("geroi/brod3.png");
+        imgBrod[4] = new Texture("geroi/brod4.png");
         screenMenu = new ScreenMenu(this);
         screenUlitsa = new ScreenUlitsa(this);
         screenAbout = new ScreenAbout(this);
@@ -84,7 +89,9 @@ public class KiSH extends Game {
         screenBlizGori = new ScreenBlizGori(this);
         screenGora = new ScreenGora(this);
         screenKamen = new ScreenKamen(this);
-        brod = new Brod(120, 215, 130, 300);
+        screenGoraOver = new ScreenGoraOver(this);
+        screenGoraDva = new ScreenGoraDva(this);
+        brod = new Brod(120, 176, 130, 300);
         setScreen(screenMenu);
 
     }
@@ -116,6 +123,12 @@ public class KiSH extends Game {
         parameter.borderColor = Color.BLACK;
         parameter.borderWidth = 2;
         zamokFONT = generator.generateFont(parameter);
+        parameter.size = 40;
+        parameter.color = Color.DARK_GRAY;
+        dverFONT = generator.generateFont(parameter);
+        parameter.size = 30;
+        parameter.color = Color.ORANGE;
+        dialogDomStarikFONT = generator.generateFont(parameter);
         generator.dispose();
     }
 

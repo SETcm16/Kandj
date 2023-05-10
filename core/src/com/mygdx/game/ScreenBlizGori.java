@@ -20,7 +20,7 @@ public class ScreenBlizGori implements Screen {
         imgBlizGori = new Texture("foni/blizGori.png");
 
         btnEXIT = new TextButton(ki.gameFONT, " ВЫЙТИ\n" +
-                                              "В МЕНЮ", 860);
+                "В МЕНЮ", 850);
     }
     @Override
     public void show() {
