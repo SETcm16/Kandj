@@ -53,6 +53,8 @@ public class ScreenDomLesnikaLes implements Screen {
 
         ki.brod.speed = 8;
 
+        ki.screenLes.n = 0;
+
         ki.camera.update();
         ki.batch.setProjectionMatrix(ki.camera.combined);
         ki.batch.begin();

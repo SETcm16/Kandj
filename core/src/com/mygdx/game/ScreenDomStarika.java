@@ -67,6 +67,8 @@ public class ScreenDomStarika implements Screen {
             ki.setScreen(ki.screenZamok);
         }
 
+        ki.screenStarikNaPoroge.n = 0;
+
         ki.camera.update();
         ki.batch.setProjectionMatrix(ki.camera.combined);
         ki.batch.begin();

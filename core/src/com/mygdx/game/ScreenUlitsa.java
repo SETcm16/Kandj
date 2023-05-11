@@ -22,8 +22,6 @@ public class ScreenUlitsa implements Screen{
     String text1 = new String();
     String text2 = new String();
 
-    int n = 0; //кол-во проигрышей музыки
-
     public ScreenUlitsa(KiSH kiSH) {
         ki = kiSH;
         imgUlitsa = new Texture("foni/ulitsa1.png");

@@ -5,6 +5,7 @@ import static com.mygdx.game.KiSH.SCR_WIDTH;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.utils.TimeUtils;
 
@@ -26,6 +27,8 @@ public class ScreenGoraDva implements Screen {
 
     boolean gameOver = false;
 
+    Sound gora;
+
     public ScreenGoraDva(KiSH kiSH){
         ki = kiSH;
 
@@ -36,12 +39,14 @@ public class ScreenGoraDva implements Screen {
 
         imgKamen = new Texture("kamen.png");
 
+        gora = Gdx.audio.newSound(Gdx.files.internal("sounds/gora.mp3"));
     }
     @Override
     public void show() {
         ki.brod.faza = 0;
         ki.brod.x = 200;
         timeStart = TimeUtils.millis();
+        gora.play();
     }
 
     @Override
@@ -51,6 +56,7 @@ public class ScreenGoraDva implements Screen {
             ki.camera.unproject(ki.touch);
             if (btnEXIT.hit(ki.touch.x/2, ki.touch.y)) {
                 ki.setScreen(ki.screenGoraOver);
+                gora.stop();
             }
             ki.brod.goTo(ki.touch.x);
         }
@@ -58,7 +64,7 @@ public class ScreenGoraDva implements Screen {
 
         timeIgri = TimeUtils.millis() - timeStart;
 
-        if(timeIgri > 10000){
+        if(timeIgri > 120000){
             ki.setScreen(ki.screenKamen);
         }
 
@@ -68,6 +74,8 @@ public class ScreenGoraDva implements Screen {
             kamni.get(i).move();
         }
 
+        ki.screenGora.n = 0;
+
         ki.camera.update();
         ki.batch.setProjectionMatrix(ki.camera.combined);
         ki.batch.begin();
@@ -76,9 +84,6 @@ public class ScreenGoraDva implements Screen {
         ki.introFONT.draw(ki.batch, timeToString(timeIgri), SCR_WIDTH/2-150, 1080);
         for(Kamen kamen: kamni) ki.batch.draw(imgKamen, kamen.getX(), kamen.getY(), kamen.width, kamen.height);
         btnEXIT.font.draw(ki.batch, btnEXIT.text, btnEXIT.x*500/251, btnEXIT.y);
-        if(timeIgri > 10000){
-            ki.setScreen(ki.screenKamen);
-        }
         ki.batch.end();
     }
 

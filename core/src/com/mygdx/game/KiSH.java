@@ -40,6 +40,7 @@ public class KiSH extends Game {
     BitmapFont zamokFONT;
     BitmapFont dverFONT;
     BitmapFont dialogDomStarikFONT;
+    BitmapFont skolkoFONT;
 
     ScreenUlitsa screenUlitsa;//здесь будут окна
     ScreenMenu screenMenu;
@@ -57,6 +58,7 @@ public class KiSH extends Game {
     ScreenKamen screenKamen;
     ScreenGoraOver screenGoraOver;
     ScreenGoraDva screenGoraDva;
+    ScreenPosleSboraGribov screenPosleSboraGribov;
 
     Brod brod;
     Texture[] imgBrod = new Texture[5];
@@ -91,6 +93,7 @@ public class KiSH extends Game {
         screenKamen = new ScreenKamen(this);
         screenGoraOver = new ScreenGoraOver(this);
         screenGoraDva = new ScreenGoraDva(this);
+        screenPosleSboraGribov = new ScreenPosleSboraGribov(this);
         brod = new Brod(120, 176, 130, 300);
         setScreen(screenMenu);
 
@@ -129,6 +132,11 @@ public class KiSH extends Game {
         parameter.size = 30;
         parameter.color = Color.ORANGE;
         dialogDomStarikFONT = generator.generateFont(parameter);
+        parameter.size = 60;
+        parameter.color = Color.DARK_GRAY;
+        parameter.borderColor = Color.CORAL;
+        parameter.borderWidth = 3;
+        skolkoFONT = generator.generateFont(parameter);
         generator.dispose();
     }
 

@@ -53,6 +53,8 @@ public class ScreenGora implements Screen {
             ki.setScreen(ki.screenGoraDva);
         }
 
+        ki.screenBlizGori.n = 0;
+
         ki.camera.update();
         ki.batch.setProjectionMatrix(ki.camera.combined);
         ki.batch.begin();

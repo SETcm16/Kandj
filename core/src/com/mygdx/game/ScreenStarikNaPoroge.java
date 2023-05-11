@@ -62,7 +62,7 @@ public class ScreenStarikNaPoroge implements Screen {
         } else ki.dverFONT.draw(ki.batch, text[1], 1500, 550);
         btnEXIT.font.draw(ki.batch, btnEXIT.text, btnEXIT.x*500/251, btnEXIT.y);
         ki.batch.end();
-        ki.brod.x = 200;
+
     }
 
     @Override

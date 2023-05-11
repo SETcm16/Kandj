@@ -14,6 +14,8 @@ public class ScreenBlizGori implements Screen {
 
     TextButton btnEXIT;
 
+    int n = 0;
+
     public ScreenBlizGori(KiSH kiSH){
         ki = kiSH;
 
@@ -24,7 +26,9 @@ public class ScreenBlizGori implements Screen {
     }
     @Override
     public void show() {
-
+        ki.brod.x = 100;
+        ki.brod.speed = 0;
+        ki.brod.faza = 0;
     }
 
     @Override
@@ -32,15 +36,27 @@ public class ScreenBlizGori implements Screen {
         if(Gdx.input.justTouched()) {
             ki.touch.set(Gdx.input.getX(), Gdx.input.getY(), 0);
             ki.camera.unproject(ki.touch);
+            n++;
             if (btnEXIT.hit(ki.touch.x/2, ki.touch.y)) {
-                ki.setScreen(ki.screenGora);
+                ki.setScreen(ki.screenMenu);
             }
+            ki.brod.goTo(ki.touch.x);
         }
+        if(n>0) {
+            ki.brod.move();
+        }
+
+        if (ki.brod.x > 1850 && ki.touch.x >1850){
+            ki.setScreen(ki.screenGora);
+        }
+
+        ki.screenDomLesnika.n = 0;
 
         ki.camera.update();
         ki.batch.setProjectionMatrix(ki.camera.combined);
         ki.batch.begin();
         ki.batch.draw(imgBlizGori, 0, 0, SCR_WIDTH, SCR_HEIGHT);
+        ki.batch.draw(ki.imgBrod[ki.brod.faza], ki.brod.getX(), ki.brod.y, ki.brod.width, ki.brod.height, 0, 0, 253, 587, ki.brod.flip(), false);
         btnEXIT.font.draw(ki.batch, btnEXIT.text, btnEXIT.x*500/251, btnEXIT.y);
         ki.batch.end();
     }

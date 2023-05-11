@@ -19,7 +19,7 @@ public class ScreenLes implements Screen {
     public ScreenLes(KiSH kiSH){
         ki = kiSH;
 
-        imgLes = new Texture("foni/les.png");
+        imgLes = new Texture("foni/les1.png");
 
         btnEXIT = new TextButton(ki.gameFONT, " ВЫЙТИ\n" +
                 "В МЕНЮ", 850);
