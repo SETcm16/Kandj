@@ -22,6 +22,8 @@ public class ScreenUlitsa implements Screen{
     String text1 = new String();
     String text2 = new String();
 
+    int n = 0;
+
     public ScreenUlitsa(KiSH kiSH) {
         ki = kiSH;
         imgUlitsa = new Texture("foni/ulitsa1.png");
@@ -44,6 +46,7 @@ public class ScreenUlitsa implements Screen{
         if(Gdx.input.justTouched()) {
             ki.touch.set(Gdx.input.getX(), Gdx.input.getY(), 0);
             ki.camera.unproject(ki.touch);
+            n++;
             if (btnEXIT.hit(ki.touch.x / 2, ki.touch.y)) {
                 ki.setScreen(ki.screenMenu);
             }
@@ -52,7 +55,9 @@ public class ScreenUlitsa implements Screen{
         }
 
         // события игры
-        ki.brod.move();
+        if(n>0){
+            ki.brod.move();
+        }
 
         if(ki.brod.x < 1800 && ki.brod.x > 1625 && ki.touch.x > 1625 && ki.touch.x < 1800){
             ki.setScreen(ki.screenStarikNaPoroge);

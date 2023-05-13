@@ -5,6 +5,7 @@ import static com.mygdx.game.KiSH.SCR_WIDTH;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Sound;
+import com.badlogic.gdx.utils.TimeUtils;
 
 public class Brod {
     float x, y;
@@ -16,6 +17,7 @@ public class Brod {
     public int state = STAY;
     int faza = 1, nFaz = 4;
     float target;
+    long timeLastShag, timeIntervalShaga = 100;
 
     public Brod(float x, float y, float width, float height) {
         this.x = x;
@@ -24,26 +26,33 @@ public class Brod {
         this.height = height;
     }
 
-    public void move(){
-        if(state == GO) {
+    public void move() {
+
+        if (state == GO) {
             x += direct * speed;
             if (direct == RIGHT && x > target || direct == LEFT && x < target) {
                 speed = 0;
                 x = target;
                 state = STAY;
             }
-            if(++faza==nFaz+1) faza = 1;
+            if (TimeUtils.millis() > timeLastShag + timeIntervalShaga) {
+                faza++;
+                timeLastShag = TimeUtils.millis();
+                if (faza == nFaz + 1) faza = 1;
+            }
+
+
         }
-        if(state == STAY) {
+        if (state == STAY) {
             faza = 0;
         }
 
-        if(x<width/2){
-            x = width/2;
+        if (x < width / 2) {
+            x = width / 2;
             speed = 0;
             state = STAY;
-        } else if (x > SCR_WIDTH - width/2) {
-            x = SCR_WIDTH - width/2;
+        } else if (x > SCR_WIDTH - width / 2) {
+            x = SCR_WIDTH - width / 2;
             speed = 0;
             state = STAY;
         }
@@ -54,7 +63,7 @@ public class Brod {
         target = tx;
         speed = 7;
         state = GO;
-        if(tx > x) {
+        if (tx > x) {
             direct = RIGHT;
         } else {
             direct = LEFT;
@@ -62,16 +71,19 @@ public class Brod {
     }
 
     float getX() {
-        return x-width/2;
+        return x - width / 2;
     }
 
     boolean flip() {
-        if(direct == LEFT){
+        if (direct == LEFT) {
             return true;
         } else {
             return false;
         }
     }
 
+    boolean overlap(Kamen kamen){
+        return kamen.getX() < x - width/4 && x + width/4 < kamen.getX()+ kamen.width && kamen.getY() < y+height && y < kamen.getY() + kamen.height;
+    }
 }
 

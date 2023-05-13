@@ -33,6 +33,7 @@ public class ScreenDomLesnika implements Screen {
         ki.brod.x = 500;
         ki.brod.speed = 0;
         ki.brod.faza = 0;
+        ki.lesnik.faza = 0;
     }
 
     @Override
@@ -45,11 +46,13 @@ public class ScreenDomLesnika implements Screen {
                 ki.setScreen(ki.screenBlizGori);
             }
 
-            ki.brod.goTo(ki.touch.x);
+            ki.brod.goTo(ki.touch.x-ki.brod.width*5/4);
+            ki.lesnik.goToL(ki.touch.x);
         }
 
         if(n > 1){
             ki.brod.move();
+            ki.lesnik.moving();
         }
 
         if(ki.brod.x < 300 && ki.touch.x < 300){
@@ -63,7 +66,8 @@ public class ScreenDomLesnika implements Screen {
         ki.batch.setProjectionMatrix(ki.camera.combined);
         ki.batch.begin();
         ki.batch.draw(imgDomLesnika, 0, 0, SCR_WIDTH, SCR_HEIGHT);
-        ki.batch.draw(ki.imgBrod[ki.brod.faza], ki.brod.x-ki.brod.width/20, 80, ki.brod.width*10/4, ki.brod.height*10/4, 0, 0, 253, 587, ki.brod.flip(), false);
+        //ki.batch.draw(ki.imgLesnik[ki.lesnik.faza], ki.lesnik.x, 100, ki.lesnik.width*2, ki.brod.height*2, 0, 0, 368, 477, ki.lesnik.flip(), false);
+        ki.batch.draw(ki.imgBrod[ki.brod.faza], ki.brod.x, 80, ki.brod.width*10/4, ki.brod.height*10/4, 0, 0, 253, 587, ki.brod.flip(), false);
         if(n == 1){
             ki.dialogDomStarikFONT.draw(ki.batch, text, ki.brod.x + 250, 900);
         }

@@ -14,6 +14,8 @@ public class ScreenPogrebOne implements Screen {
 
     TextButton btnEXIT;
 
+    int n = 0;
+
     public ScreenPogrebOne(KiSH kiSH) {
         ki = kiSH;
 
@@ -33,9 +35,14 @@ public class ScreenPogrebOne implements Screen {
         if(Gdx.input.justTouched()) {
             ki.touch.set(Gdx.input.getX(), Gdx.input.getY(), 0);
             ki.camera.unproject(ki.touch);
+            n++;
             if (btnEXIT.hit(ki.touch.x/2, ki.touch.y)) {
-                ki.setScreen(ki.screenLes);
+                ki.setScreen(ki.screenMenu);
             }
+        }
+
+        if(n>0){
+            ki.setScreen(ki.screenLes);
         }
 
         ki.camera.update();

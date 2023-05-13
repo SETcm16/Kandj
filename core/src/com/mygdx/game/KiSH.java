@@ -59,9 +59,13 @@ public class KiSH extends Game {
     ScreenGoraOver screenGoraOver;
     ScreenGoraDva screenGoraDva;
     ScreenPosleSboraGribov screenPosleSboraGribov;
+    ScreenDomLesnikaDva screenDomLesnikaDva;
 
     Brod brod;
     Texture[] imgBrod = new Texture[5];
+
+    Lesnik lesnik;
+    Texture[] imgLesnik = new Texture[5];
 
     @Override
     public void create () {
@@ -77,6 +81,11 @@ public class KiSH extends Game {
         imgBrod[2] = new Texture("geroi/brod2.png");
         imgBrod[3] = new Texture("geroi/brod3.png");
         imgBrod[4] = new Texture("geroi/brod4.png");
+        imgLesnik[0] = new Texture("geroi/lesnik1.png");
+        imgLesnik[1] = new Texture("geroi/lesnik2.png");
+        imgLesnik[2] = new Texture("geroi/lesnik3.png");
+        imgLesnik[3] = new Texture("geroi/lesnik4.png");
+        imgLesnik[4] = new Texture("geroi/lesnik5.png");
         screenMenu = new ScreenMenu(this);
         screenUlitsa = new ScreenUlitsa(this);
         screenAbout = new ScreenAbout(this);
@@ -94,8 +103,10 @@ public class KiSH extends Game {
         screenGoraOver = new ScreenGoraOver(this);
         screenGoraDva = new ScreenGoraDva(this);
         screenPosleSboraGribov = new ScreenPosleSboraGribov(this);
+        screenDomLesnikaDva = new ScreenDomLesnikaDva(this);
         brod = new Brod(120, 176, 130, 300);
-        setScreen(screenMenu);
+        lesnik = new Lesnik(150, 368, 477, 7);
+        setScreen(screenGoraDva);
 
     }
 

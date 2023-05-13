@@ -53,6 +53,8 @@ public class ScreenStarikNaPoroge implements Screen {
             }
         }
 
+        ki.screenUlitsa.n = 0;
+
         ki.camera.update();
         ki.batch.setProjectionMatrix(ki.camera.combined);
         ki.batch.begin();

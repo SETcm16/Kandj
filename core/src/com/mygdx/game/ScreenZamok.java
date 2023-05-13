@@ -43,7 +43,7 @@ public class ScreenZamok implements Screen {
 
         }
 
-        ki.screenDomStarika.n = -1;
+        ki.screenDomStarika.n = -2;
 
         ki.camera.update();
         ki.batch.setProjectionMatrix(ki.camera.combined);

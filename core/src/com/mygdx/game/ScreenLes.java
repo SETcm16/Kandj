@@ -53,6 +53,8 @@ public class ScreenLes implements Screen {
 
         ki.brod.speed = 10;
 
+        ki.screenPogrebOne.n = 0;
+
         ki.camera.update();
         ki.batch.setProjectionMatrix(ki.camera.combined);
         ki.batch.begin();

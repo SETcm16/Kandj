@@ -45,6 +45,7 @@ public class ScreenGoraDva implements Screen {
     public void show() {
         ki.brod.faza = 0;
         ki.brod.x = 200;
+        ki.brod.y -= 96;
         timeStart = TimeUtils.millis();
         gora.play();
     }
@@ -61,6 +62,11 @@ public class ScreenGoraDva implements Screen {
             ki.brod.goTo(ki.touch.x);
         }
         ki.brod.move();
+        for (int i = 0; i < kamni.size(); i++) {
+            if (ki.brod.overlap(kamni.get(i))){
+                System.out.println("hit");
+            }
+        }
 
         timeIgri = TimeUtils.millis() - timeStart;
 
@@ -80,9 +86,9 @@ public class ScreenGoraDva implements Screen {
         ki.batch.setProjectionMatrix(ki.camera.combined);
         ki.batch.begin();
         ki.batch.draw(imgGora, 0,0, SCR_WIDTH, SCR_HEIGHT);
-        ki.batch.draw(ki.imgBrod[ki.brod.faza], ki.brod.x-ki.brod.width/2, 80, ki.brod.width*3/2, ki.brod.height*3/2, 0, 0, 253, 587, ki.brod.flip(), false);
+        ki.batch.draw(ki.imgBrod[ki.brod.faza], ki.brod.x-ki.brod.width/2, ki.brod.y, ki.brod.width*3/2, ki.brod.height*3/2, 0, 0, 253, 587, ki.brod.flip(), false);
         ki.introFONT.draw(ki.batch, timeToString(timeIgri), SCR_WIDTH/2-150, 1080);
-        for(Kamen kamen: kamni) ki.batch.draw(imgKamen, kamen.getX(), kamen.getY(), kamen.width, kamen.height);
+        for (Kamen kamen : kamni) ki.batch.draw(imgKamen, kamen.getX(), kamen.getY(), kamen.width, kamen.height);
         btnEXIT.font.draw(ki.batch, btnEXIT.text, btnEXIT.x*500/251, btnEXIT.y);
         ki.batch.end();
     }
