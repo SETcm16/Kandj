@@ -21,6 +21,8 @@ public class ScreenGora implements Screen {
 
     String text = new String();
 
+    boolean gameOver;
+
     public ScreenGora(KiSH kiSH){
         ki = kiSH;
 
@@ -53,6 +55,7 @@ public class ScreenGora implements Screen {
             ki.setScreen(ki.screenGoraDva);
         }
         ki.screenBlizGori.n = 0;
+        gameOver = false;
 
         ki.camera.update();
         ki.batch.setProjectionMatrix(ki.camera.combined);

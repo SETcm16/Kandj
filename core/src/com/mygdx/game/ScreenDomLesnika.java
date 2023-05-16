@@ -43,7 +43,7 @@ public class ScreenDomLesnika implements Screen {
             ki.camera.unproject(ki.touch);
             n++;
             if (btnEXIT.hit(ki.touch.x/2, ki.touch.y)) {
-                ki.setScreen(ki.screenBlizGori);
+                ki.setScreen(ki.screenMenu);
             }
 
             ki.brod.goTo(ki.touch.x-ki.brod.width*5/4);
@@ -60,7 +60,6 @@ public class ScreenDomLesnika implements Screen {
         }
 
         ki.screenDomLesnikaLes.n = 0;
-        ki.screenPosleSboraGribov.n = 0;
 
         ki.camera.update();
         ki.batch.setProjectionMatrix(ki.camera.combined);

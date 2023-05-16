@@ -77,6 +77,6 @@ public class ScreenGoraOver implements Screen {
 
     @Override
     public void dispose() {
-
+        imgGoraOver.dispose();
     }
 }

@@ -7,7 +7,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Texture;
 
-public class ScreenPosleSboraGribov implements Screen {
+public class ScreenDomLesnikaLesDvaPosleGribov implements Screen {
     KiSH ki;
 
     Texture imgDomLesnikaLesPosleGribov;
@@ -16,7 +16,7 @@ public class ScreenPosleSboraGribov implements Screen {
 
     int n = 0;
 
-    public ScreenPosleSboraGribov(KiSH kiSH){
+    public ScreenDomLesnikaLesDvaPosleGribov(KiSH kiSH){
         ki = kiSH;
 
         imgDomLesnikaLesPosleGribov = new Texture("foni/domLesnikaLes.png");
@@ -48,7 +48,7 @@ public class ScreenPosleSboraGribov implements Screen {
         }
 
         if(ki.brod.x > 1280 && ki.brod.x < 1470 && ki.touch.x > 1280 && ki.touch.x < 1470) {
-            ki.setScreen(ki.screenDomLesnika);
+            ki.setScreen(ki.screenDomLesnikaDva);
         }
 
         ki.camera.update();
@@ -82,6 +82,6 @@ public class ScreenPosleSboraGribov implements Screen {
 
     @Override
     public void dispose() {
-
+        imgDomLesnikaLesPosleGribov.dispose();
     }
 }

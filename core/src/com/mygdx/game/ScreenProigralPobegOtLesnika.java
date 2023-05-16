@@ -7,28 +7,29 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Texture;
 
-public class ScreenLes implements Screen {
+public class ScreenProigralPobegOtLesnika implements Screen {
     KiSH ki;
 
-    Texture imgLes;
+    Texture imgProigrish;
 
     TextButton btnEXIT;
+    TextButton btnAgain;
 
-    int n = 0;
+    public ScreenProigralPobegOtLesnika(KiSH kiSH){
+        ki =kiSH;
 
-    public ScreenLes(KiSH kiSH){
-        ki = kiSH;
-
-        imgLes = new Texture("foni/les1.png");
+        imgProigrish = new Texture("foni/proigralBegOtLesnika.png");
 
         btnEXIT = new TextButton(ki.gameFONT, " ВЫЙТИ\n" +
                 "В МЕНЮ", 850);
+
+        btnAgain = new TextButton(ki.zamokFONT, "СБЕЖАТЬ ЕЩЁ РАЗ", 650);
     }
+
     @Override
     public void show() {
-        ki.brod.x = 100;
-        ki.brod.speed = 0;
-        ki.brod.faza = 0;
+        ki.oboroten.x = 0;
+        ki.brod.x = 450;
     }
 
     @Override
@@ -36,31 +37,25 @@ public class ScreenLes implements Screen {
         if(Gdx.input.justTouched()) {
             ki.touch.set(Gdx.input.getX(), Gdx.input.getY(), 0);
             ki.camera.unproject(ki.touch);
-            n++;
-            if (btnEXIT.hit(ki.touch.x/2, ki.touch.y)) {
+            if (btnEXIT.hit(ki.touch.x / 2, ki.touch.y)) {
                 ki.setScreen(ki.screenMenu);
             }
 
-            ki.brod.goTo(ki.touch.x);
+            if (btnAgain.hit(ki.touch.x, ki.touch.y+300)){
+                ki.setScreen(ki.screenDomLesnikaLesTriPobeg);
+            }
         }
-        if(n > 0) {
-            ki.brod.move();
-        }
-
-        if(ki.brod.x > 1800){
-            ki.setScreen(ki.screenDomLesnikaLes);
-        }
-
-        ki.brod.speed = 7;
-
-        ki.screenPogrebOne.n = 0;
+        ki.brod.x = 450;
+        ki.oboroten.x = 0;
+        ki.screenDomLesnikaLesTriPobeg.m = 0;
+        ki.screenDomLesnikaLesTriPobeg.n = 0;
 
         ki.camera.update();
         ki.batch.setProjectionMatrix(ki.camera.combined);
         ki.batch.begin();
-        ki.batch.draw(imgLes, 0, 0, SCR_WIDTH, SCR_HEIGHT);
-        ki.batch.draw(ki.imgBrod[ki.brod.faza], ki.brod.x-80, 70, ki.brod.width*12/10, ki.brod.height*12/10, 0, 0, 253, 587, ki.brod.flip(), false);
+        ki.batch.draw(imgProigrish, 0,0, SCR_WIDTH, SCR_HEIGHT);
         btnEXIT.font.draw(ki.batch, btnEXIT.text, btnEXIT.x*500/251, btnEXIT.y);
+        btnAgain.font.draw(ki.batch, btnAgain.text, btnAgain.x, btnAgain.y*2/3);
         ki.batch.end();
     }
 
@@ -86,6 +81,6 @@ public class ScreenLes implements Screen {
 
     @Override
     public void dispose() {
-        imgLes.dispose();
+        imgProigrish.dispose();
     }
 }

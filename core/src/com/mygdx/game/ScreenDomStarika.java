@@ -17,7 +17,7 @@ public class ScreenDomStarika implements Screen {
 
     boolean dialog = true;
 
-    public static final int N = 4;
+    int N = 4;
     int n;
 
     String[] text = new String[N];
@@ -53,10 +53,14 @@ public class ScreenDomStarika implements Screen {
             if (btnEXIT.hit(ki.touch.x/2, ki.touch.y)) {
                 ki.setScreen(ki.screenMenu);
             }
-            ki.brod.goTo(ki.touch.x-ki.brod.width*5/4);
+            ki.brod.goTo(ki.touch.x-ki.brod.width*6/5);
+
+            if(n == N+1){
+                dialog = false;
+            }
         }
         ki.brod.speed = 10;
-        if(n>3) {
+        if(dialog == false) {
             ki.brod.move();
         }
 
@@ -70,7 +74,7 @@ public class ScreenDomStarika implements Screen {
         ki.batch.setProjectionMatrix(ki.camera.combined);
         ki.batch.begin();
         ki.batch.draw(imgDomStarika, 0,0, SCR_WIDTH, SCR_HEIGHT);
-        ki.batch.draw(ki.imgBrod[ki.brod.faza], ki.brod.x, 80, ki.brod.width*10/4, ki.brod.height*10/4, 0, 0, 253, 587, ki.brod.flip(), false);
+        ki.batch.draw(ki.imgBrod[ki.brod.faza], ki.brod.x-ki.brod.width/20, 80, ki.brod.width*10/4, ki.brod.height*10/4, 0, 0, 253, 587, ki.brod.flip(), false);
         if(n == 0){
             ki.dialogDomStarikFONT.draw(ki.batch, text[0], ki.brod.x+320, 700);
         }else if(n == 1){

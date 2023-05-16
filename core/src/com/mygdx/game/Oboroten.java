@@ -4,63 +4,63 @@ import static com.mygdx.game.KiSH.SCR_WIDTH;
 
 import com.badlogic.gdx.utils.TimeUtils;
 
-public class Lesnik {
+public class Oboroten {
     float x, y;
     float width, height;
     float speed;
-    public static final int RIGHTL = 1, LEFTL = -1;
-    public float directL = RIGHTL; // -1 или 1
-    public static final int STAYL = 0, GOL = 1;
-    public int stateL = STAYL;
-    int faza = 1, nFaz = 4;
+    public static final int RIGHTO = 1, LEFTO = -1;
+    public float directO = RIGHTO; // -1 или 1
+    public static final int STAYO = 0, GOO = 1;
+    public int stateO = STAYO;
+    int faza = 0, nFaz = 3;
     float target;
-    long timeLastShag, timeIntervalShaga = 100;
+    long timeLastShag, timeIntervalShaga = 50;
 
-    public Lesnik(float x, float width, float height, float speed) {
+    public Oboroten(float x, float width, float height, float speed) {
         this.x = x;
         this.width = width;
         this.height = height;
         this.speed = speed;
     }
 
-    public void moving(){
-        if(stateL == GOL) {
-            x += directL * speed;
-            if (directL == RIGHTL && x > target || directL == LEFTL && x < target) {
+    public void moved(){
+        if(stateO == GOO) {
+            x += directO * speed;
+            if (directO == RIGHTO && x > target || directO == LEFTO && x < target) {
                 speed = 0;
                 x = target;
-                stateL = STAYL;
+                stateO = STAYO;
             }
             if (TimeUtils.millis() > timeLastShag + timeIntervalShaga) {
                 faza++;
                 timeLastShag = TimeUtils.millis();
-                if (faza == nFaz + 1) faza = 1;
+                if (faza == nFaz + 1) faza = 0;
             }
         }
-        if(stateL == STAYL) {
+        if(stateO == STAYO) {
             faza = 0;
         }
 
         if(x<width/2){
             x = width/2;
             speed = 0;
-            stateL = STAYL;
+            stateO = STAYO;
         } else if (x > SCR_WIDTH - width/2) {
             x = SCR_WIDTH - width/2;
             speed = 0;
-            stateL = STAYL;
+            stateO = STAYO;
         }
     }
 
 
-    public void goToL(float tx) {
+    public void goToO(float tx) {
         target = tx;
-        speed = 5;
-        stateL = GOL;
+        speed = 11;
+        stateO = GOO;
         if(tx > x) {
-            directL = RIGHTL;
+            directO = RIGHTO;
         } else {
-            directL = LEFTL;
+            directO = LEFTO;
         }
     }
 
@@ -69,7 +69,7 @@ public class Lesnik {
     }
 
     boolean flip() {
-        if(directL == LEFTL){
+        if(directO == LEFTO){
             return true;
         } else {
             return false;

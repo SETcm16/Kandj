@@ -26,6 +26,8 @@ public class ScreenGribi implements Screen {
 
     String text = new String();
 
+    int n = 0;
+
     public ScreenGribi(KiSH kiSH){
         ki = kiSH;
 
@@ -43,11 +45,13 @@ public class ScreenGribi implements Screen {
                 "В МЕНЮ", 850);
 
         text = "ТЫ СОБРАЛ ВСЕ ГРИБЫ!\n" +
-                "ИДИ К ДОМУ";
+                "     ИДИ К ДОМУ\n" +
+                "          <--";
     }
 
     @Override
     public void show() {
+        ki.screenDomLesnika.show();
         ki.brod.x = 100;
         ki.brod.speed = 0;
         ki.brod.faza = 0;
@@ -58,13 +62,15 @@ public class ScreenGribi implements Screen {
         if(Gdx.input.justTouched()) {
             ki.touch.set(Gdx.input.getX(), Gdx.input.getY(), 0);
             ki.camera.unproject(ki.touch);
+            n++;
             if (btnEXIT.hit(ki.touch.x/2, ki.touch.y)) {
-                ki.setScreen(ki.screenBlizGori);
+                ki.setScreen(ki.screenMenu);
             }
             ki.brod.goTo(ki.touch.x);
         }
-
-        ki.brod.move();
+        if(n>0) {
+            ki.brod.move();
+        }
 
         if(ki.touch.x > 1830 && ki.touch.x < 1880 && ki.brod.x > 1830 && ki.brod.x < 1880){
             sobralGrib1 = true;
@@ -120,10 +126,10 @@ public class ScreenGribi implements Screen {
         ki.batch.draw(ki.imgBrod[ki.brod.faza], ki.brod.x-80, 70, ki.brod.width*12/10, ki.brod.height*12/10, 0, 0, 253, 587, ki.brod.flip(), false);
         btnEXIT.font.draw(ki.batch, btnEXIT.text, btnEXIT.x*500/251, btnEXIT.y);
         if(sobralGrib1 && sobralGrib2 && sobralGrib3 && sobralGrib4 && sobralGrib5 && sobralGrib6){
-            ki.skolkoFONT.draw(ki.batch, text, SCR_WIDTH/2-350, 950);
+            ki.skolkoFONT.draw(ki.batch, text, SCR_WIDTH/2-350, 1050);
         }
         if(sobralGrib1 && sobralGrib2 && sobralGrib3 && sobralGrib4 && sobralGrib5 && sobralGrib6 && ki.brod.x < 150 && ki.touch.x < 150){
-            ki.setScreen(ki.screenPosleSboraGribov);
+            ki.setScreen(ki.screenDomLesnikaLesDvaPosleGribov);
         }
         ki.batch.end();
     }

@@ -3,7 +3,6 @@ package com.mygdx.game;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
@@ -16,18 +15,6 @@ import com.badlogic.gdx.math.Vector3;
 public class KiSH extends Game {
     public static final float SCR_WIDTH = 1920; //разрешение
     public static final float SCR_HEIGHT = 1080;
-
-    public static final int MENU = 0, ULITSA = 1, DOMSTARIKA = 2; //каждому окну присваем его порядковый номер
-    public static int tekuschi_screen;
-
-    public static boolean zad_DVERSULITSI, zad_DVERPOGREBA;//проверка на выполнение задания
-    public static boolean zad_GRIBI, zad_BITVASOBOROTNEM;
-    public static boolean zad_GORA;
-    public static boolean zad_IGRAODIN, zad_IGREDVA, zad_IGRATRI;
-    public static boolean zad_MERTVECI;
-    public static boolean zad_VPOGREBEZHIZN;
-    public static boolean isHOCHETIGRAT;
-
 
     SpriteBatch batch; //рисует картинки
     OrthographicCamera camera; //преобразует разрешение
@@ -58,14 +45,20 @@ public class KiSH extends Game {
     ScreenKamen screenKamen;
     ScreenGoraOver screenGoraOver;
     ScreenGoraDva screenGoraDva;
-    ScreenPosleSboraGribov screenPosleSboraGribov;
+    ScreenDomLesnikaLesDvaPosleGribov screenDomLesnikaLesDvaPosleGribov;
     ScreenDomLesnikaDva screenDomLesnikaDva;
+    ScreenZaStolomULesnika screenZaStolomULesnika;
+    ScreenDomLesnikaLesTriPobeg screenDomLesnikaLesTriPobeg;
+    ScreenProigralPobegOtLesnika screenProigralPobegOtLesnika;
 
     Brod brod;
     Texture[] imgBrod = new Texture[5];
 
     Lesnik lesnik;
     Texture[] imgLesnik = new Texture[5];
+
+    Oboroten oboroten;
+    Texture[] imgObor = new Texture[4];
 
     @Override
     public void create () {
@@ -86,6 +79,10 @@ public class KiSH extends Game {
         imgLesnik[2] = new Texture("geroi/lesnik3.png");
         imgLesnik[3] = new Texture("geroi/lesnik4.png");
         imgLesnik[4] = new Texture("geroi/lesnik5.png");
+        imgObor[0] = new Texture("geroi/obor1.png");
+        imgObor[1] = new Texture("geroi/obor2.png");
+        imgObor[2] = new Texture("geroi/obor3.png");
+        imgObor[3] = new Texture("geroi/obor4.png");
         screenMenu = new ScreenMenu(this);
         screenUlitsa = new ScreenUlitsa(this);
         screenAbout = new ScreenAbout(this);
@@ -102,11 +99,15 @@ public class KiSH extends Game {
         screenKamen = new ScreenKamen(this);
         screenGoraOver = new ScreenGoraOver(this);
         screenGoraDva = new ScreenGoraDva(this);
-        screenPosleSboraGribov = new ScreenPosleSboraGribov(this);
+        screenDomLesnikaLesDvaPosleGribov = new ScreenDomLesnikaLesDvaPosleGribov(this);
         screenDomLesnikaDva = new ScreenDomLesnikaDva(this);
+        screenZaStolomULesnika = new ScreenZaStolomULesnika(this);
+        screenDomLesnikaLesTriPobeg = new ScreenDomLesnikaLesTriPobeg(this);
+        screenProigralPobegOtLesnika = new ScreenProigralPobegOtLesnika(this);
         brod = new Brod(120, 176, 130, 300);
-        lesnik = new Lesnik(150, 368, 477, 7);
-        setScreen(screenGoraDva);
+        lesnik = new Lesnik(0, 290, 477, 7);
+        oboroten = new Oboroten(0, 249, 474, 10);
+        setScreen(screenZamok);
 
     }
 

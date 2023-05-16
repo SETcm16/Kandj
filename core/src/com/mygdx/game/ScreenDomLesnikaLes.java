@@ -38,7 +38,7 @@ public class ScreenDomLesnikaLes implements Screen {
             ki.camera.unproject(ki.touch);
             n++;
             if (btnEXIT.hit(ki.touch.x/2, ki.touch.y)) {
-                ki.setScreen(ki.screenDomLesnika);
+                ki.setScreen(ki.screenMenu);
             }
 
             ki.brod.goTo(ki.touch.x);
