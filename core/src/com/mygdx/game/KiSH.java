@@ -33,6 +33,7 @@ public class KiSH extends Game {
     ScreenMenu screenMenu;
     ScreenAbout screenAbout;
     ScreenDomStarika screenDomStarika;
+    ScreenUlitsa2 screenUlitsa2;
     ScreenStarikNaPoroge screenStarikNaPoroge;
     ScreenZamok screenZamok;
     ScreenPogrebOne screenPogrebOne;
@@ -85,6 +86,7 @@ public class KiSH extends Game {
         imgObor[3] = new Texture("geroi/obor4.png");
         screenMenu = new ScreenMenu(this);
         screenUlitsa = new ScreenUlitsa(this);
+        screenUlitsa2 = new ScreenUlitsa2(this);
         screenAbout = new ScreenAbout(this);
         screenDomStarika = new ScreenDomStarika(this);
         screenStarikNaPoroge = new ScreenStarikNaPoroge(this);
@@ -107,7 +109,7 @@ public class KiSH extends Game {
         brod = new Brod(120, 176, 130, 300);
         lesnik = new Lesnik(0, 290, 477, 7);
         oboroten = new Oboroten(0, 249, 474, 10);
-        setScreen(screenZamok);
+        setScreen(screenMenu);
 
     }
 

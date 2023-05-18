@@ -45,6 +45,11 @@ public class ScreenPogrebOne implements Screen {
             ki.setScreen(ki.screenLes);
         }
 
+        ki.screenZamok.chislo1 = 0;
+        ki.screenZamok.chislo2 = 0;
+        ki.screenZamok.chislo3 = 0;
+        ki.screenZamok.chislo4 = 0;
+
         ki.camera.update();
         ki.batch.setProjectionMatrix(ki.camera.combined);
         ki.batch.begin();

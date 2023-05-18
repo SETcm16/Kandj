@@ -68,6 +68,13 @@ public class ScreenDomStarika implements Screen {
             ki.setScreen(ki.screenZamok);
         }
 
+        if(ki.brod.x < 200 && ki.touch.x < 200){
+            ki.setScreen(ki.screenUlitsa2);
+            ki.brod.x = 1700;
+            ki.brod.faza = 0;
+        }
+
+        ki.screenUlitsa2.n = 0;
         ki.screenStarikNaPoroge.n = 0;
 
         ki.camera.update();

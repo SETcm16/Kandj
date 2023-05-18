@@ -5,35 +5,30 @@ import static com.mygdx.game.KiSH.SCR_WIDTH;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.scenes.scene2d.Stage;
 
-public class ScreenDomLesnika implements Screen {
+import java.awt.TextField;
+
+public class ScreenUlitsa2 implements Screen{
     KiSH ki;
 
-    Texture imgDomLesnika;
+    Texture imgUlitsa;
 
     TextButton btnEXIT;
 
-    String text = new String();
-
     int n = 0;
 
-    public ScreenDomLesnika(KiSH kiSH){
+    public ScreenUlitsa2(KiSH kiSH) {
         ki = kiSH;
-
-        imgDomLesnika = new Texture("foni/domLesnika.png");
-
+        imgUlitsa = new Texture("foni/ulitsa1.png");
         btnEXIT = new TextButton(ki.gameFONT, " ВЫЙТИ\n" +
                 "В МЕНЮ", 850);
-
-        text = "-БЛИН, СХОЖУ ХОТЬ ЗА ГРИБАМИ";
     }
-    @Override
+
     public void show() {
-        ki.brod.x = 500;
-        ki.brod.speed = 0;
-        ki.brod.faza = 0;
-        ki.lesnik.faza = 0;
     }
 
     @Override
@@ -42,33 +37,26 @@ public class ScreenDomLesnika implements Screen {
             ki.touch.set(Gdx.input.getX(), Gdx.input.getY(), 0);
             ki.camera.unproject(ki.touch);
             n++;
-            if (btnEXIT.hit(ki.touch.x/2, ki.touch.y)) {
+            if (btnEXIT.hit(ki.touch.x / 2, ki.touch.y)) {
                 ki.setScreen(ki.screenMenu);
             }
-
-            ki.brod.goTo(ki.touch.x-ki.brod.width*5/4);
-            ki.lesnik.goToL(ki.touch.x);
+            ki.brod.goTo(ki.touch.x);
         }
-
-        if(n > 1){
+        if(n > 0) {
             ki.brod.move();
-            ki.lesnik.moving();
         }
 
-        if(ki.brod.x < 180 && ki.touch.x < 180){
-            ki.setScreen(ki.screenGribi);
-        }
+        ki.screenDomStarika.n = 4;
 
-        ki.screenDomLesnikaLes.n = 0;
+        if(ki.brod.x < 1800 && ki.brod.x > 1625 && ki.touch.x > 1625 && ki.touch.x < 1800){
+            ki.setScreen(ki.screenDomStarika);
+        }
 
         ki.camera.update();
         ki.batch.setProjectionMatrix(ki.camera.combined);
         ki.batch.begin();
-        ki.batch.draw(imgDomLesnika, 0, 0, SCR_WIDTH, SCR_HEIGHT);
-        ki.batch.draw(ki.imgBrod[ki.brod.faza], ki.brod.x, 80, ki.brod.width*10/4, ki.brod.height*10/4, 0, 0, 253, 587, ki.brod.flip(), false);
-        if(n == 1){
-            ki.dialogDomStarikFONT.draw(ki.batch, text, ki.brod.x + 250, 900);
-        }
+        ki.batch.draw(imgUlitsa, 0,0, SCR_WIDTH, SCR_HEIGHT);
+        ki.batch.draw(ki.imgBrod[ki.brod.faza], ki.brod.getX(), ki.brod.y, ki.brod.width, ki.brod.height, 0, 0, 253, 587, ki.brod.flip(), false);
         btnEXIT.font.draw(ki.batch, btnEXIT.text, btnEXIT.x*500/251, btnEXIT.y);
         ki.batch.end();
     }
@@ -95,6 +83,6 @@ public class ScreenDomLesnika implements Screen {
 
     @Override
     public void dispose() {
-        imgDomLesnika.dispose();
+        imgUlitsa.dispose();
     }
 }
