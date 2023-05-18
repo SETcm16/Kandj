@@ -113,7 +113,7 @@ public class KiSH extends Game {
         brod = new Brod(120, 176, 130, 300);
         lesnik = new Lesnik(0, 290, 477, 7);
         oboroten = new Oboroten(0, 249, 474, 10);
-        setScreen(screenGoraDva);
+        setScreen(screenMenu);
 
     }
 
