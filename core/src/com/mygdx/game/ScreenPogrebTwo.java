@@ -8,21 +8,19 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.utils.TimeUtils;
 
-public class ScreenPogrebOne implements Screen {
+public class ScreenPogrebTwo implements Screen {
     KiSH ki;
 
-    Texture imgPogrebOne;
-    Texture imgMorg;
+    Texture imgPogreb;
 
     TextButton btnEXIT;
 
-    int n = 0;
+    long timeStart;
 
-    public ScreenPogrebOne(KiSH kiSH) {
+    public ScreenPogrebTwo(KiSH kiSH){
         ki = kiSH;
 
-        imgPogrebOne = new Texture("foni/pogrebOne.png");
-        imgMorg = new Texture("foni/morganie.png");
+        imgPogreb = new Texture("foni/pogrebTWO.png");
 
         btnEXIT = new TextButton(ki.gameFONT, " ВЫЙТИ\n" +
                 "В МЕНЮ", 850);
@@ -30,6 +28,7 @@ public class ScreenPogrebOne implements Screen {
 
     @Override
     public void show() {
+        timeStart = TimeUtils.millis();
     }
 
     @Override
@@ -37,25 +36,19 @@ public class ScreenPogrebOne implements Screen {
         if(Gdx.input.justTouched()) {
             ki.touch.set(Gdx.input.getX(), Gdx.input.getY(), 0);
             ki.camera.unproject(ki.touch);
-            n++;
             if (btnEXIT.hit(ki.touch.x/2, ki.touch.y)) {
                 ki.setScreen(ki.screenMenu);
             }
         }
 
-        if(n>0){
-            ki.setScreen(ki.screenLes);
+        if(TimeUtils.millis() - timeStart > 3000){
+            ki.setScreen(ki.screenPogrebTRI);
         }
-
-        ki.screenZamok.chislo1 = 0;
-        ki.screenZamok.chislo2 = 0;
-        ki.screenZamok.chislo3 = 0;
-        ki.screenZamok.chislo4 = 0;
 
         ki.camera.update();
         ki.batch.setProjectionMatrix(ki.camera.combined);
         ki.batch.begin();
-        ki.batch.draw(imgPogrebOne, 0, 0, SCR_WIDTH, SCR_HEIGHT);
+        ki.batch.draw(imgPogreb, 0, 0, SCR_WIDTH, SCR_HEIGHT);
         btnEXIT.font.draw(ki.batch, btnEXIT.text, btnEXIT.x*500/251, btnEXIT.y);
         ki.batch.end();
     }
@@ -82,6 +75,6 @@ public class ScreenPogrebOne implements Screen {
 
     @Override
     public void dispose() {
-        imgPogrebOne.dispose();
+
     }
 }

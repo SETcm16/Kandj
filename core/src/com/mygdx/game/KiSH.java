@@ -41,16 +41,18 @@ public class KiSH extends Game {
     ScreenDomLesnikaLes screenDomLesnikaLes;
     ScreenDomLesnika screenDomLesnika;
     ScreenGribi screenGribi;
-    ScreenBlizGori screenBlizGori;
-    ScreenGora screenGora;
-    ScreenKamen screenKamen;
-    ScreenGoraOver screenGoraOver;
-    ScreenGoraDva screenGoraDva;
     ScreenDomLesnikaLesDvaPosleGribov screenDomLesnikaLesDvaPosleGribov;
     ScreenDomLesnikaDva screenDomLesnikaDva;
     ScreenZaStolomULesnika screenZaStolomULesnika;
     ScreenDomLesnikaLesTriPobeg screenDomLesnikaLesTriPobeg;
     ScreenProigralPobegOtLesnika screenProigralPobegOtLesnika;
+    ScreenBlizGori screenBlizGori;
+    ScreenGora screenGora;
+    ScreenGoraOver screenGoraOver;
+    ScreenGoraDva screenGoraDva;
+    ScreenKamen screenKamen;
+    ScreenPogrebTwo screenPogrebTwo;
+    ScreenPogrebTRI screenPogrebTRI;
 
     Brod brod;
     Texture[] imgBrod = new Texture[5];
@@ -106,10 +108,12 @@ public class KiSH extends Game {
         screenZaStolomULesnika = new ScreenZaStolomULesnika(this);
         screenDomLesnikaLesTriPobeg = new ScreenDomLesnikaLesTriPobeg(this);
         screenProigralPobegOtLesnika = new ScreenProigralPobegOtLesnika(this);
+        screenPogrebTwo = new ScreenPogrebTwo(this);
+        screenPogrebTRI = new ScreenPogrebTRI(this);
         brod = new Brod(120, 176, 130, 300);
         lesnik = new Lesnik(0, 290, 477, 7);
         oboroten = new Oboroten(0, 249, 474, 10);
-        setScreen(screenMenu);
+        setScreen(screenGoraDva);
 
     }
 

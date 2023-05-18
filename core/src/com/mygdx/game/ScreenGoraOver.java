@@ -37,7 +37,7 @@ public class ScreenGoraOver implements Screen {
             ki.touch.set(Gdx.input.getX(), Gdx.input.getY(), 0);
             ki.camera.unproject(ki.touch);
             if (btnEXIT.hit(ki.touch.x/2, ki.touch.y)) {
-                ki.setScreen(ki.screenMenu);
+                ki.setScreen(ki.screenPogrebTwo);
             }
 
             if(btnNewGame.hit(ki.touch.x, ki.touch.y)){
