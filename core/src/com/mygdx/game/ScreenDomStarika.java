@@ -60,7 +60,7 @@ public class ScreenDomStarika implements Screen {
             }
         }
         ki.brod.speed = 10;
-        if(dialog == false) {
+        if(dialog == false && n > 4) {
             ki.brod.move();
         }
 
@@ -68,7 +68,7 @@ public class ScreenDomStarika implements Screen {
             ki.setScreen(ki.screenZamok);
         }
 
-        if(ki.brod.x < 200 && ki.touch.x < 200){
+        if(ki.brod.x < 150 && ki.touch.x < 150){
             ki.setScreen(ki.screenUlitsa2);
             ki.brod.x = 1700;
             ki.brod.faza = 0;

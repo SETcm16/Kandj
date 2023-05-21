@@ -25,11 +25,7 @@ public class ScreenGoraDva implements Screen {
     long timeStart, timeIgri;
     long timeLastSpawn, timeSpawnInterval = 500;
 
-    boolean gameOver = false;
-
     Sound gora;
-
-    Kamen kamen;
 
     public ScreenGoraDva(KiSH kiSH){
         ki = kiSH;
@@ -47,6 +43,7 @@ public class ScreenGoraDva implements Screen {
     public void show() {
         ki.brod.faza = 0;
         ki.brod.x = 200;
+        ki.brod.y -= 96;
         timeStart = TimeUtils.millis();
         gora.play();
     }
@@ -57,12 +54,17 @@ public class ScreenGoraDva implements Screen {
             ki.touch.set(Gdx.input.getX(), Gdx.input.getY(), 0);
             ki.camera.unproject(ki.touch);
             if (btnEXIT.hit(ki.touch.x/2, ki.touch.y)) {
-                ki.setScreen(ki.screenGoraOver);
+                ki.setScreen(ki.screenMenu);
                 gora.stop();
             }
             ki.brod.goTo(ki.touch.x);
         }
         ki.brod.move();
+        for (int i = 0; i < kamni.size(); i++) {
+            if (ki.brod.overlap(kamni.get(i))){
+                ki.setScreen(ki.screenGoraOver);
+            }
+        }
 
         timeIgri = TimeUtils.millis() - timeStart;
 
@@ -75,9 +77,7 @@ public class ScreenGoraDva implements Screen {
         for (int i = kamni.size()-1; i >= 0; i--) {
             kamni.get(i).move();
         }
-
         ki.screenGora.n = 0;
-
 
         ki.camera.update();
         ki.batch.setProjectionMatrix(ki.camera.combined);
@@ -85,7 +85,8 @@ public class ScreenGoraDva implements Screen {
         ki.batch.draw(imgGora, 0,0, SCR_WIDTH, SCR_HEIGHT);
         ki.batch.draw(ki.imgBrod[ki.brod.faza], ki.brod.x-ki.brod.width/2, 80, ki.brod.width*3/2, ki.brod.height*3/2, 0, 0, 253, 587, ki.brod.flip(), false);
         ki.introFONT.draw(ki.batch, timeToString(timeIgri), SCR_WIDTH/2-150, 1080);
-        for(Kamen kamen: kamni) ki.batch.draw(imgKamen, kamen.getX(), kamen.getY(), kamen.width, kamen.height);
+        for (Kamen kamen : kamni)
+            ki.batch.draw(imgKamen, kamen.getX(), kamen.getY(), kamen.width, kamen.height);
         btnEXIT.font.draw(ki.batch, btnEXIT.text, btnEXIT.x*500/251, btnEXIT.y);
         ki.batch.end();
     }
@@ -128,10 +129,5 @@ public class ScreenGoraDva implements Screen {
             kamni.add(new Kamen());
             timeLastSpawn = TimeUtils.millis();
         }
-    }
-
-    void gameOver(){
-        gameOver = true;
-        ki.setScreen(ki.screenGoraOver);
     }
 }

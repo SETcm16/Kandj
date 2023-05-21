@@ -10,7 +10,7 @@ import com.badlogic.gdx.graphics.Texture;
 
 import javax.swing.JFrame;
 
-public class ScreenZamok extends JFrame implements Screen {
+public class ScreenZamok implements Screen {
     KiSH ki;
 
     TextButton btnEXIT;
@@ -44,7 +44,7 @@ public class ScreenZamok extends JFrame implements Screen {
             ki.touch.set(Gdx.input.getX(), Gdx.input.getY(), 0);
             ki.camera.unproject(ki.touch);
             if (btnEXIT.hit(ki.touch.x/2, ki.touch.y)) {
-                ki.setScreen(ki.screenPogrebOne);
+                ki.setScreen(ki.screenMenu);
             }
         }
 
@@ -57,6 +57,10 @@ public class ScreenZamok extends JFrame implements Screen {
 
         if(ki.touch.x < 130 && ki.touch.y > 900){
             ki.setScreen(ki.screenDomStarika);
+            ki.brod.x = 160;
+            ki.brod.faza = 0;
+            ki.brod.speed = 0;
+            ki.screenDomStarika.n = 4;
         }
 
         if(Gdx.input.justTouched() && ki.touch.x > 810 && ki.touch.x < 935 && ki.touch.y > 263 && ki.touch.y < 435){

@@ -6,6 +6,7 @@ import static com.mygdx.game.KiSH.SCR_WIDTH;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.utils.TimeUtils;
 
 public class ScreenDomLesnikaLesTriPobeg implements Screen {
     KiSH ki;
@@ -19,6 +20,8 @@ public class ScreenDomLesnikaLesTriPobeg implements Screen {
     int m = 0; //шаг
 
     String text = new String();
+
+    long timeSTART;
 
     public ScreenDomLesnikaLesTriPobeg(KiSH kiSH){
         ki = kiSH;
@@ -38,6 +41,8 @@ public class ScreenDomLesnikaLesTriPobeg implements Screen {
         ki.brod.speed = 0;
         ki.brod.faza = 0;
         ki.lesnik.faza = 0;
+        ki.lesnik.flip();
+        timeSTART = TimeUtils.millis();
     }
 
     @Override
@@ -54,11 +59,11 @@ public class ScreenDomLesnikaLesTriPobeg implements Screen {
             ki.oboroten.goToO(1630);
         }
 
-        if(n>2){
+        if(TimeUtils.millis() - timeSTART > 2000){
             ki.oboroten.moved();
         }
 
-        if(n>3){
+        if(TimeUtils.millis() - timeSTART > 2000){
             ki.brod.move();
         }
 
@@ -71,9 +76,9 @@ public class ScreenDomLesnikaLesTriPobeg implements Screen {
         }
 
         if (Gdx.input.isTouched()){
-            if(n>2) {
+            if(TimeUtils.millis() - timeSTART > 2000) {
                 m++;
-                ki.brod.speed = (float) (ki.brod.speed + m * 0.03);
+                ki.brod.speed = (float) (ki.brod.speed + m * 0.1);
             } else {
                 ki.brod.speed = 0;
             }
@@ -84,13 +89,13 @@ public class ScreenDomLesnikaLesTriPobeg implements Screen {
         ki.batch.begin();
         ki.batch.draw(imgDomLesnikaLesDva, 0, 0, SCR_WIDTH, SCR_HEIGHT);
         ki.skolkoFONT.draw(ki.batch, text, 0, 1050);
-        if(n==0) {
+        if(TimeUtils.millis() - timeSTART < 999) {
             ki.batch.draw(ki.imgLesnik[ki.lesnik.faza], 0, 70, 290, 477, 0, 0, 290, 477, ki.lesnik.flip(), false);
         }
-        if (n == 1){
+        if (TimeUtils.millis() - timeSTART > 1000 && TimeUtils.millis() - timeSTART < 1999){
             ki.batch.draw(imgLesnik2, 0,  70, 340, 477);
         }
-        if(n > 1){
+        if(TimeUtils.millis() - timeSTART > 2000){
             ki.batch.draw(ki.imgObor[ki.oboroten.faza], ki.oboroten.x, 70, ki.oboroten.width, ki.oboroten.height);
         }
         ki.batch.draw(ki.imgBrod[ki.brod.faza], ki.brod.x-80, 70, ki.brod.width*12/10, ki.brod.height*12/10, 0, 0, 253, 587, ki.brod.flip(), false);

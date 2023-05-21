@@ -6,6 +6,7 @@ import static com.mygdx.game.KiSH.SCR_WIDTH;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.utils.TimeUtils;
 
 public class ScreenKamen implements Screen {
     KiSH ki;
@@ -13,6 +14,8 @@ public class ScreenKamen implements Screen {
     Texture imgUpalKamen;
 
     TextButton btnEXIT;
+
+    long time;
 
     public ScreenKamen(KiSH kiSH){
         ki = kiSH;
@@ -24,7 +27,7 @@ public class ScreenKamen implements Screen {
     }
     @Override
     public void show() {
-
+        time = TimeUtils.millis();
     }
 
     @Override
@@ -35,6 +38,10 @@ public class ScreenKamen implements Screen {
             if (btnEXIT.hit(ki.touch.x/2, ki.touch.y)) {
                 ki.setScreen(ki.screenMenu);
             }
+        }
+
+        if(TimeUtils.millis() - time > 2000){
+            ki.setScreen(ki.screenPogrebTwo);
         }
 
         ki.camera.update();

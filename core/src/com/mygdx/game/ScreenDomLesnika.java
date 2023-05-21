@@ -55,7 +55,7 @@ public class ScreenDomLesnika implements Screen {
             ki.lesnik.moving();
         }
 
-        if(ki.brod.x < 180 && ki.touch.x < 180){
+        if(ki.brod.x < 200 && ki.touch.x < 200){
             ki.setScreen(ki.screenGribi);
         }
 

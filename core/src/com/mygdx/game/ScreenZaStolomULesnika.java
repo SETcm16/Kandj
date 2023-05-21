@@ -33,14 +33,15 @@ public class ScreenZaStolomULesnika implements Screen {
         text[2] = "-СПАСИБО ТЕБЕ, ПУТНИК,\n" +
                 "НО Я НЕ ЕМ ГРИБЫ";
         text[3] = "-С ЧЕГО ЭТО ВДРУГ?";
-        text[4] = "-МОГУ СКАЗАТЬ ОДНО -\n" +
-                "ТЕБЕ НЕ ПОВЕЗЛО";
-        text[5] = "-ПОЧЕМУ ЖЕ?";
-        text[6] = "-Я НЕ ЧЕЛОВЕК\n" +
-                "Я - ОБОРОТЕНЬ";
+        text[4] = "-МНЕ НРАВИТСЯ\n" +
+                "КОЕ-ЧТО ДРУГОЕ";
+        text[5] = "-И ЧТО ЖЕ?";
+        text[6] = "-Я НЕ ЧЕЛОВЕК, Я - ОБОРОТЕНЬ, \n" +
+                "МОЕ ЛЮБИМОЕ БЛЮДО - ЧЕЛОВЕЧИНА";
         text[7] = "-И ЧТО МНЕ ДЕЛАТЬ?";
         text[8] = "-ПОСТАРАЙСЯ ОТ МЕНЯ УБЕЖАТЬ,\n" +
-                "ИНАЧЕ - СЪЕМ!";
+                "ИНАЧЕ - НЕ ВИДАТЬ ТЕБЕ БОЛЬШЕ\n" +
+                "БЕЛОГО СВЕТА!";
     }
 
     @Override
@@ -73,6 +74,8 @@ public class ScreenZaStolomULesnika implements Screen {
             ki.dialogDomStarikFONT.draw(ki.batch, text[n], 570, 850);
         } else if (n < 9) {
             ki.dialogDomStarikFONT.draw(ki.batch, text[n], 1220, 950);
+        } else if (n == 8) {
+            ki.dialogDomStarikFONT.draw(ki.batch, text[n], 1220, 1050);
         }
         btnEXIT.font.draw(ki.batch, btnEXIT.text, btnEXIT.x*500/251, btnEXIT.y);
         ki.batch.end();
