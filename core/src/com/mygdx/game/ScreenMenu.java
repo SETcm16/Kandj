@@ -40,7 +40,6 @@ public class ScreenMenu implements Screen {
     }
 
     public void show() {
-
     }
 
     public void render(float delta) {
@@ -68,10 +67,12 @@ public class ScreenMenu implements Screen {
             }
         }
 
-        if(musicOn) {
+        if(musicOn && !btnPlay.hit(ki.touch.x, ki.touch.y)) {
             mscMenu.play();
             mscMenu.setVolume(0.8f);
             mscMenu.setLooping(true);
+        } else {
+            mscMenu.stop();
         }
 
         ki.screenUlitsa.n = 0;
