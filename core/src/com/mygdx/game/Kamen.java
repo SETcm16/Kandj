@@ -11,10 +11,6 @@ public class Kamen extends Kamni{
         super(0, 0, 100, 100);
         x = MathUtils.random(width/2, SCR_WIDTH - width/2);
         y = MathUtils.random(SCR_HEIGHT + height/2, SCR_HEIGHT*2);
-        vy = MathUtils.random(-12, -8);
-    }
-
-    boolean outOfBounds(){
-        return y < -height/2;
+        vy = MathUtils.random(-15, -10);
     }
 }

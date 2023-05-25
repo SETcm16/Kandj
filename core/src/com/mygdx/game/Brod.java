@@ -83,8 +83,7 @@ public class Brod {
     }
 
     boolean overlap(Kamen kamen){
-        //return kamen.getX() < x - width/4 && x + width/4 < kamen.getX()+ kamen.width && kamen.getY() < y+height && y < kamen.getY() + kamen.height;
-        return ((kamen.getX() + kamen.width > x - width/4 && kamen.getX() + kamen.width < x + width/4) || (kamen.getX() > x - width/4 && kamen.getX() < x + width/4)) && kamen.getY() < y + height + 150 && kamen.getY() > y + 150;
+        return ((kamen.getX() + kamen.width > x - width/4 && kamen.getX() + kamen.width < x + width/4) || (kamen.getX() > x - width/4 && kamen.getX() < x + width/4)) && kamen.getY() < y + height + 120 && kamen.getY() > y + 120;
     }
 }
 

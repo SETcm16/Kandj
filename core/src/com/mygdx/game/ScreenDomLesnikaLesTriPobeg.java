@@ -53,10 +53,14 @@ public class ScreenDomLesnikaLesTriPobeg implements Screen {
             n++;
             if (btnEXIT.hit(ki.touch.x/2, ki.touch.y)) {
                 ki.setScreen(ki.screenMenu);
+                ki.screenMenu.mscMenu.stop();
+                ki.screenMenu.mscMenu.setLooping(false);
+                ki.screenUlitsa.mscGame.stop();
+                ki.screenUlitsa.mscGame.setLooping(false);
             }
 
             ki.brod.goTo(ki.touch.x);
-            ki.oboroten.goToO(1630);
+            ki.oboroten.goToO(1820);
         }
 
         if(TimeUtils.millis() - timeSTART > 2000){
@@ -65,6 +69,8 @@ public class ScreenDomLesnikaLesTriPobeg implements Screen {
 
         if(TimeUtils.millis() - timeSTART > 2000){
             ki.brod.move();
+        } else {
+            ki.brod.x = 450;
         }
 
         if(ki.oboroten.x + 120 > ki.brod.x){
@@ -74,11 +80,10 @@ public class ScreenDomLesnikaLesTriPobeg implements Screen {
         if(ki.brod.x > 1800){
             ki.setScreen(ki.screenBlizGori);
         }
-
-        if (Gdx.input.isTouched()){
-            if(TimeUtils.millis() - timeSTART > 2000) {
+        if(Gdx.input.justTouched()) {
+            if (TimeUtils.millis() - timeSTART > 2000) {
+                ki.brod.speed = (float) (ki.brod.speed + m * 0.5);
                 m++;
-                ki.brod.speed = (float) (ki.brod.speed + m * 0.1);
             } else {
                 ki.brod.speed = 0;
             }
@@ -90,15 +95,15 @@ public class ScreenDomLesnikaLesTriPobeg implements Screen {
         ki.batch.draw(imgDomLesnikaLesDva, 0, 0, SCR_WIDTH, SCR_HEIGHT);
         ki.skolkoFONT.draw(ki.batch, text, 0, 1050);
         if(TimeUtils.millis() - timeSTART < 999) {
-            ki.batch.draw(ki.imgLesnik[ki.lesnik.faza], 0, 70, 290, 477, 0, 0, 290, 477, ki.lesnik.flip(), false);
+            ki.batch.draw(ki.imgLesnik[ki.lesnik.faza], 0, 70, 274, 475, 0, 0, 290, 477, ki.lesnik.flip(), false);
         }
         if (TimeUtils.millis() - timeSTART > 1000 && TimeUtils.millis() - timeSTART < 1999){
-            ki.batch.draw(imgLesnik2, 0,  70, 340, 477);
+            ki.batch.draw(imgLesnik2, 0,  70, 314, 475);
         }
         if(TimeUtils.millis() - timeSTART > 2000){
             ki.batch.draw(ki.imgObor[ki.oboroten.faza], ki.oboroten.x, 70, ki.oboroten.width, ki.oboroten.height);
         }
-        ki.batch.draw(ki.imgBrod[ki.brod.faza], ki.brod.x-80, 70, ki.brod.width*12/10, ki.brod.height*12/10, 0, 0, 253, 587, ki.brod.flip(), false);
+        ki.batch.draw(ki.imgBrod[ki.brod.faza], ki.brod.x, 70, ki.brod.width*12/10, ki.brod.height*12/10, 0, 0, 253, 587, ki.brod.flip(), false);
         btnEXIT.font.draw(ki.batch, btnEXIT.text, btnEXIT.x*500/251, btnEXIT.y);
         ki.batch.end();
     }

@@ -11,17 +11,23 @@ import com.badlogic.gdx.utils.TimeUtils;
 public class ScreenPogrebOne implements Screen {
     KiSH ki;
 
-    Texture imgPogrebOne;
+    Texture imgPogrebPadaet;
+    Texture imgPogrebUpal;
+    Texture black;
     Texture imgMorg;
 
     TextButton btnEXIT;
 
     int n = 0;
 
+    long time;
+
     public ScreenPogrebOne(KiSH kiSH) {
         ki = kiSH;
 
-        imgPogrebOne = new Texture("foni/pogrebOne.png");
+        imgPogrebPadaet = new Texture("foni/upalVpogrebe.png");
+        imgPogrebUpal = new Texture("foni/naNafig.png");
+        black = new Texture("black.png");
         imgMorg = new Texture("foni/morganie.png");
 
         btnEXIT = new TextButton(ki.gameFONT, " ВЫЙТИ\n" +
@@ -30,6 +36,7 @@ public class ScreenPogrebOne implements Screen {
 
     @Override
     public void show() {
+        time = TimeUtils.millis();
     }
 
     @Override
@@ -40,10 +47,14 @@ public class ScreenPogrebOne implements Screen {
             n++;
             if (btnEXIT.hit(ki.touch.x/2, ki.touch.y)) {
                 ki.setScreen(ki.screenMenu);
+                ki.screenMenu.mscMenu.stop();
+                ki.screenMenu.mscMenu.setLooping(false);
+                ki.screenUlitsa.mscGame.stop();
+                ki.screenUlitsa.mscGame.setLooping(false);
             }
         }
 
-        if(n>0){
+        if(TimeUtils.millis() - time > 4500){
             ki.setScreen(ki.screenLes);
         }
 
@@ -55,7 +66,13 @@ public class ScreenPogrebOne implements Screen {
         ki.camera.update();
         ki.batch.setProjectionMatrix(ki.camera.combined);
         ki.batch.begin();
-        ki.batch.draw(imgPogrebOne, 0, 0, SCR_WIDTH, SCR_HEIGHT);
+        if(TimeUtils.millis() - time < 1500) {
+            ki.batch.draw(imgPogrebUpal, 0, 0, SCR_WIDTH, SCR_HEIGHT);
+        } else if (TimeUtils.millis() - time > 1500 && TimeUtils.millis() - time < 3500) {
+            ki.batch.draw(imgPogrebPadaet, 0,  0, SCR_WIDTH, SCR_HEIGHT);
+        } else if(TimeUtils.millis() - time > 3500){
+            ki.batch.draw(black, 0, 0, SCR_WIDTH, SCR_HEIGHT);
+        }
         btnEXIT.font.draw(ki.batch, btnEXIT.text, btnEXIT.x*500/251, btnEXIT.y);
         ki.batch.end();
     }
@@ -82,6 +99,7 @@ public class ScreenPogrebOne implements Screen {
 
     @Override
     public void dispose() {
-        imgPogrebOne.dispose();
+        imgPogrebPadaet.dispose();
+        imgPogrebUpal.dispose();
     }
 }

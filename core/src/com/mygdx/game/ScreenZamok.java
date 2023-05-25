@@ -22,11 +22,13 @@ public class ScreenZamok implements Screen {
     int chislo4 = 0;
 
     Texture imgZamok;
+    Texture pod;
 
     public ScreenZamok(KiSH kiSH){
         ki = kiSH;
 
         imgZamok = new Texture("foni/zamok.png");
+        pod = new Texture("podskazka.png");
 
         btnEXIT = new TextButton(ki.gameFONT, " ВЫЙТИ\n" +
                 "В МЕНЮ", 850);
@@ -45,6 +47,10 @@ public class ScreenZamok implements Screen {
             ki.camera.unproject(ki.touch);
             if (btnEXIT.hit(ki.touch.x/2, ki.touch.y)) {
                 ki.setScreen(ki.screenMenu);
+                ki.screenMenu.mscMenu.stop();
+                ki.screenMenu.mscMenu.setLooping(false);
+                ki.screenUlitsa.mscGame.stop();
+                ki.screenUlitsa.mscGame.setLooping(false);
             }
         }
 
@@ -57,10 +63,9 @@ public class ScreenZamok implements Screen {
 
         if(ki.touch.x < 130 && ki.touch.y > 900){
             ki.setScreen(ki.screenDomStarika);
-            ki.brod.x = 160;
+            ki.brod.x = 1450;
             ki.brod.faza = 0;
             ki.brod.speed = 0;
-            ki.screenDomStarika.n = 4;
         }
 
         if(Gdx.input.justTouched() && ki.touch.x > 810 && ki.touch.x < 935 && ki.touch.y > 263 && ki.touch.y < 435){
@@ -96,6 +101,7 @@ public class ScreenZamok implements Screen {
         ki.introFONT.draw(ki.batch, String.valueOf(chislo2), 970, 445);
         ki.introFONT.draw(ki.batch, String.valueOf(chislo3), 1095, 445);
         ki.introFONT.draw(ki.batch, String.valueOf(chislo4), 1220, 445);
+        ki.batch.draw(pod, 1480, 180, 407, 386);
         btnEXIT.font.draw(ki.batch, btnEXIT.text, btnEXIT.x*500/251, btnEXIT.y);
         btnVIITI.font.draw(ki.batch, btnVIITI.text, btnEXIT.x*0, btnEXIT.y);
         ki.batch.end();

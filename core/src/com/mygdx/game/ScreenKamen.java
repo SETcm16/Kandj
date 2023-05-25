@@ -37,6 +37,10 @@ public class ScreenKamen implements Screen {
             ki.camera.unproject(ki.touch);
             if (btnEXIT.hit(ki.touch.x/2, ki.touch.y)) {
                 ki.setScreen(ki.screenMenu);
+                ki.screenMenu.mscMenu.stop();
+                ki.screenMenu.mscMenu.setLooping(false);
+                ki.screenUlitsa.mscGame.stop();
+                ki.screenUlitsa.mscGame.setLooping(false);
             }
         }
 

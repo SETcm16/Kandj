@@ -25,8 +25,6 @@ public class ScreenGoraDva implements Screen {
     long timeStart, timeIgri;
     long timeLastSpawn, timeSpawnInterval = 500;
 
-    Sound gora;
-
     public ScreenGoraDva(KiSH kiSH){
         ki = kiSH;
 
@@ -36,16 +34,13 @@ public class ScreenGoraDva implements Screen {
                 "В МЕНЮ", 850);
 
         imgKamen = new Texture("kamen.png");
-
-        gora = Gdx.audio.newSound(Gdx.files.internal("sounds/gora.mp3"));
     }
     @Override
     public void show() {
         ki.brod.faza = 0;
         ki.brod.x = 200;
-        ki.brod.y -= 96;
+        ki.brod.y = 80;
         timeStart = TimeUtils.millis();
-        gora.play();
     }
 
     @Override
@@ -55,20 +50,28 @@ public class ScreenGoraDva implements Screen {
             ki.camera.unproject(ki.touch);
             if (btnEXIT.hit(ki.touch.x/2, ki.touch.y)) {
                 ki.setScreen(ki.screenMenu);
-                gora.stop();
+                ki.screenMenu.mscMenu.stop();
+                ki.screenMenu.mscMenu.setLooping(false);
+                ki.screenUlitsa.mscGame.stop();
+                ki.screenUlitsa.mscGame.setLooping(false);
             }
             ki.brod.goTo(ki.touch.x);
         }
-        ki.brod.move();
+
+        if(TimeUtils.millis() - timeStart < 20000){
+            ki.brod.move();
+        }
+
         for (int i = 0; i < kamni.size(); i++) {
             if (ki.brod.overlap(kamni.get(i))){
                 ki.setScreen(ki.screenGoraOver);
+                kamni.clear();
             }
         }
 
         timeIgri = TimeUtils.millis() - timeStart;
 
-        if(timeIgri > 120000){
+        if(timeIgri > 20000){
             ki.setScreen(ki.screenKamen);
         }
 
@@ -83,7 +86,7 @@ public class ScreenGoraDva implements Screen {
         ki.batch.setProjectionMatrix(ki.camera.combined);
         ki.batch.begin();
         ki.batch.draw(imgGora, 0,0, SCR_WIDTH, SCR_HEIGHT);
-        ki.batch.draw(ki.imgBrod[ki.brod.faza], ki.brod.x-ki.brod.width/2, 80, ki.brod.width*3/2, ki.brod.height*3/2, 0, 0, 253, 587, ki.brod.flip(), false);
+        ki.batch.draw(ki.imgBrod[ki.brod.faza], ki.brod.x-ki.brod.width/2, ki.brod.y, ki.brod.width*3/2, ki.brod.height*3/2, 0, 0, 253, 587, ki.brod.flip(), false);
         ki.introFONT.draw(ki.batch, timeToString(timeIgri), SCR_WIDTH/2-150, 1080);
         for (Kamen kamen : kamni)
             ki.batch.draw(imgKamen, kamen.getX(), kamen.getY(), kamen.width, kamen.height);

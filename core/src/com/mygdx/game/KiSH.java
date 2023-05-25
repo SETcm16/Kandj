@@ -111,9 +111,9 @@ public class KiSH extends Game {
         screenPogrebTwo = new ScreenPogrebTwo(this);
         screenPogrebTRI = new ScreenPogrebTRI(this);
         brod = new Brod(120, 176, 130, 300);
-        lesnik = new Lesnik(0, 290, 477, 7);
+        lesnik = new Lesnik(0, 274, 475, 7);
         oboroten = new Oboroten(0, 249, 474, 10);
-        setScreen(screenGora);
+        setScreen(screenMenu);
 
     }
 

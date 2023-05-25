@@ -17,7 +17,7 @@ public class ScreenDomStarika implements Screen {
 
     boolean dialog = true;
 
-    int N = 4;
+    int N = 3;
     int n;
 
     String[] text = new String[N];
@@ -35,7 +35,6 @@ public class ScreenDomStarika implements Screen {
                 "ЧТО ХОЧЕШЬ - ТО ПРОСИ";
         text[2] = "-А ЛУЧШЕ В ПОГРЕБ ПОЛЕЗАЙ,\n" +
                 "КАРТОШКИ ПРИНЕСИ!";
-        text[3] = "-МНЕ, КСТАТИ, 69";
     }
 
     @Override
@@ -52,15 +51,15 @@ public class ScreenDomStarika implements Screen {
             n++;
             if (btnEXIT.hit(ki.touch.x/2, ki.touch.y)) {
                 ki.setScreen(ki.screenMenu);
+                ki.screenMenu.mscMenu.stop();
+                ki.screenMenu.mscMenu.setLooping(false);
+                ki.screenUlitsa.mscGame.stop();
+                ki.screenUlitsa.mscGame.setLooping(false);
             }
             ki.brod.goTo(ki.touch.x-ki.brod.width*6/5);
-
-            if(n == N+1){
-                dialog = false;
-            }
         }
         ki.brod.speed = 10;
-        if(dialog == false && n > 4) {
+        if(n > 3) {
             ki.brod.move();
         }
 
@@ -88,8 +87,6 @@ public class ScreenDomStarika implements Screen {
             ki.dialogDomStarikFONT.draw(ki.batch, text[1], 1250, 900);
         } else if( n == 2){
             ki.dialogDomStarikFONT.draw(ki.batch, text[2], 1250, 900);
-        } else if( n == 3){
-            ki.dialogDomStarikFONT.draw(ki.batch, text[3], 1250, 900);
         }
         btnEXIT.font.draw(ki.batch, btnEXIT.text, btnEXIT.x*500/251, btnEXIT.y);
         ki.batch.end();

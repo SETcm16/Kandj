@@ -5,6 +5,7 @@ import static com.mygdx.game.KiSH.SCR_WIDTH;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
@@ -24,6 +25,8 @@ public class ScreenUlitsa implements Screen{
 
     int n = 0;
 
+    Music mscGame;
+
     public ScreenUlitsa(KiSH kiSH) {
         ki = kiSH;
         imgUlitsa = new Texture("foni/ulitsa1.png");
@@ -35,9 +38,16 @@ public class ScreenUlitsa implements Screen{
         text2 = "-ТЫ КТО ТАКОЙ?\n" +
                 "Я ТЕБЯ НЕ ЗВАЛ!\n" +
                 "ИДИ ОТСЮДА";
+
+        mscGame = Gdx.audio.newMusic(Gdx.files.internal("sounds/mscGame.mp3"));
     }
 
     public void show() {
+        if(ki.screenMenu.musicOn){
+            mscGame.play();
+            mscGame.setVolume(0.8f);
+            mscGame.setLooping(true);
+        }
     }
 
     @Override
@@ -49,6 +59,10 @@ public class ScreenUlitsa implements Screen{
             n++;
             if (btnEXIT.hit(ki.touch.x / 2, ki.touch.y)) {
                 ki.setScreen(ki.screenMenu);
+                ki.screenMenu.mscMenu.stop();
+                ki.screenMenu.mscMenu.setLooping(false);
+                mscGame.stop();
+                mscGame.setLooping(false);
             }
             //передвижение
             ki.brod.goTo(ki.touch.x);
@@ -62,6 +76,8 @@ public class ScreenUlitsa implements Screen{
         if(ki.brod.x < 1800 && ki.brod.x > 1625 && ki.touch.x > 1625 && ki.touch.x < 1800){
             ki.setScreen(ki.screenStarikNaPoroge);
         }
+
+
 
         // отрисовка
         ki.camera.update();
@@ -77,6 +93,7 @@ public class ScreenUlitsa implements Screen{
         ki.batch.draw(ki.imgBrod[ki.brod.faza], ki.brod.getX(), ki.brod.y, ki.brod.width, ki.brod.height, 0, 0, 253, 587, ki.brod.flip(), false);
         btnEXIT.font.draw(ki.batch, btnEXIT.text, btnEXIT.x*500/251, btnEXIT.y);
         ki.batch.end();
+
     }
 
     @Override
