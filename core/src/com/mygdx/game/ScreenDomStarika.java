@@ -58,7 +58,9 @@ public class ScreenDomStarika implements Screen {
             }
             ki.brod.goTo(ki.touch.x-ki.brod.width*6/5);
         }
-        ki.brod.speed = 10;
+        ki.brod.speed = 8;
+
+
         if(n > 3) {
             ki.brod.move();
         }
@@ -116,5 +118,9 @@ public class ScreenDomStarika implements Screen {
     public void dispose() {
         imgDomStarika.dispose();
         imgBrod.dispose();
+    }
+
+    public void  stop(){
+        ki.brod.x = 300;
     }
 }

@@ -81,13 +81,13 @@ public class  ScreenDomLesnikaDva implements Screen {
         ki.batch.draw(ki.imgLesnik[ki.lesnik.faza], ki.lesnik.x, 100, ki.lesnik.width*3/2, ki.brod.height*2, 0, 0, 274, 475, ki.lesnik.flip(), false);
         ki.batch.draw(ki.imgBrod[ki.brod.faza], ki.brod.x, 80, ki.brod.width*10/4, ki.brod.height*10/4, 0, 0, 253, 587, ki.brod.flip(), false);
         if (n == 0){
-            ki.dialogDomStarikFONT.draw(ki.batch, text, 370, 800);
+            ki.dialogDomStarikFONT.draw(ki.batch, text, ki.lesnik.x + 150, 850);
         }
         if (n == 1){
             ki.dialogDomStarikFONT.draw(ki.batch, text1, 1200, 800);
         }
         if (n == 2){
-            ki.dialogDomStarikFONT.draw(ki.batch, text2, 370, 800);
+            ki.dialogDomStarikFONT.draw(ki.batch, text2, ki.lesnik.x+200, 820);
         }
         btnEXIT.font.draw(ki.batch, btnEXIT.text, btnEXIT.x*500/251, btnEXIT.y);
         ki.batch.end();

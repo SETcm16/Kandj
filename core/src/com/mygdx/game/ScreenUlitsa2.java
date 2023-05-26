@@ -54,6 +54,7 @@ public class ScreenUlitsa2 implements Screen{
 
         if(ki.brod.x < 1800 && ki.brod.x > 1625 && ki.touch.x > 1625 && ki.touch.x < 1800){
             ki.setScreen(ki.screenDomStarika);
+            ki.brod.goTo(300);
         }
 
         ki.camera.update();
