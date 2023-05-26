@@ -59,7 +59,7 @@ public class ScreenDomLesnikaLesDvaPosleGribov implements Screen {
         ki.batch.setProjectionMatrix(ki.camera.combined);
         ki.batch.begin();
         ki.batch.draw(imgDomLesnikaLesPosleGribov, 0,0, SCR_WIDTH, SCR_HEIGHT);
-        ki.batch.draw(ki.imgBrod[ki.brod.faza], ki.brod.x-80, 70, ki.brod.width*12/10, ki.brod.height*12/10, 0, 0, 253, 587, ki.brod.flip(), false);
+        ki.batch.draw(ki.imgBrod[ki.brod.faza], ki.brod.x - ki.brod.width/2, 70, ki.brod.width*12/10, ki.brod.height*12/10, 0, 0, 253, 587, ki.brod.flip(), false);
         btnEXIT.font.draw(ki.batch, btnEXIT.text, btnEXIT.x*500/251, btnEXIT.y);
         ki.batch.end();
     }

@@ -55,15 +55,11 @@ public class ScreenDomLesnikaLes implements Screen {
             ki.setScreen(ki.screenDomLesnika);
         }
 
-        ki.brod.speed = 8;
-
-        ki.screenLes.n = 0;
-
         ki.camera.update();
         ki.batch.setProjectionMatrix(ki.camera.combined);
         ki.batch.begin();
         ki.batch.draw(imgDomLesnikaLes, 0, 0, SCR_WIDTH, SCR_HEIGHT);
-        ki.batch.draw(ki.imgBrod[ki.brod.faza], ki.brod.x-80, 70, ki.brod.width*12/10, ki.brod.height*12/10, 0, 0, 253, 587, ki.brod.flip(), false);
+        ki.batch.draw(ki.imgBrod[ki.brod.faza], ki.brod.x, 70, ki.brod.width*12/10, ki.brod.height*12/10, 0, 0, 253, 587, ki.brod.flip(), false);
         btnEXIT.font.draw(ki.batch, btnEXIT.text, btnEXIT.x*500/251, btnEXIT.y);
         ki.batch.end();
     }

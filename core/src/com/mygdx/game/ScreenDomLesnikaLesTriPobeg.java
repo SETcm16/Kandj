@@ -82,7 +82,7 @@ public class ScreenDomLesnikaLesTriPobeg implements Screen {
         }
         if(Gdx.input.justTouched()) {
             if (TimeUtils.millis() - timeSTART > 2000) {
-                ki.brod.speed = (float) (ki.brod.speed + m * 0.5);
+                ki.brod.speed = (float) (ki.brod.speed + m );
                 m++;
             } else {
                 ki.brod.speed = 0;

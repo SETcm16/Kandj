@@ -48,6 +48,8 @@ public class ScreenKamen implements Screen {
             ki.setScreen(ki.screenPogrebTwo);
         }
 
+        ki.screenGoraDva.kamni.clear();
+
         ki.camera.update();
         ki.batch.setProjectionMatrix(ki.camera.combined);
         ki.batch.begin();

@@ -58,7 +58,7 @@ public class ScreenGoraDva implements Screen {
             ki.brod.goTo(ki.touch.x);
         }
 
-        if(TimeUtils.millis() - timeStart < 20000){
+        if(TimeUtils.millis() - timeStart < 2000){
             ki.brod.move();
         }
 
@@ -71,7 +71,7 @@ public class ScreenGoraDva implements Screen {
 
         timeIgri = TimeUtils.millis() - timeStart;
 
-        if(timeIgri > 20000){
+        if(timeIgri > 2000){
             ki.setScreen(ki.screenKamen);
         }
 

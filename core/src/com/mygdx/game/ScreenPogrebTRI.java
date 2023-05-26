@@ -50,6 +50,10 @@ public class ScreenPogrebTRI implements Screen {
 
         if(n>0){
             ki.setScreen(ki.screenMenu);
+            ki.screenMenu.mscMenu.stop();
+            ki.screenMenu.mscMenu.setLooping(false);
+            ki.screenUlitsa.mscGame.stop();
+            ki.screenUlitsa.mscGame.setLooping(false);
         }
 
         ki.camera.update();

@@ -66,9 +66,9 @@ public class ScreenPogrebOne implements Screen {
         ki.camera.update();
         ki.batch.setProjectionMatrix(ki.camera.combined);
         ki.batch.begin();
-        if(TimeUtils.millis() - time < 1500) {
+        if(TimeUtils.millis() - time < 2000) {
             ki.batch.draw(imgPogrebUpal, 0, 0, SCR_WIDTH, SCR_HEIGHT);
-        } else if (TimeUtils.millis() - time > 1500 && TimeUtils.millis() - time < 3500) {
+        } else if (TimeUtils.millis() - time > 2000 && TimeUtils.millis() - time < 3500) {
             ki.batch.draw(imgPogrebPadaet, 0,  0, SCR_WIDTH, SCR_HEIGHT);
         } else if(TimeUtils.millis() - time > 3500){
             ki.batch.draw(black, 0, 0, SCR_WIDTH, SCR_HEIGHT);

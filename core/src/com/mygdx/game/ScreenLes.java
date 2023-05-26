@@ -51,7 +51,7 @@ public class ScreenLes implements Screen {
                 ki.screenUlitsa.mscGame.setLooping(false);
             }
 
-            ki.brod.goTo(ki.touch.x);
+            ki.brod.goTo(ki.touch.x-ki.brod.width/2);
         }
         if(n > 0) {
             ki.brod.move();
@@ -61,18 +61,16 @@ public class ScreenLes implements Screen {
             ki.setScreen(ki.screenDomLesnikaLes);
         }
 
-        ki.brod.speed = 7;
-
         ki.screenPogrebOne.n = 0;
 
         ki.camera.update();
         ki.batch.setProjectionMatrix(ki.camera.combined);
         ki.batch.begin();
-        if(TimeUtils.millis() - time < 1500) {
+        if(TimeUtils.millis() - time < 1501) {
             ki.batch.draw(imgProsnulsya, 0, 0, SCR_WIDTH, SCR_HEIGHT);
         } else if (TimeUtils.millis() - time > 1500){
             ki.batch.draw(imgLes, 0, 0, SCR_WIDTH, SCR_HEIGHT);
-            ki.batch.draw(ki.imgBrod[ki.brod.faza], ki.brod.x - 80, 70, ki.brod.width * 12 / 10, ki.brod.height * 12 / 10, 0, 0, 253, 587, ki.brod.flip(), false);
+            ki.batch.draw(ki.imgBrod[ki.brod.faza], ki.brod.x, 76, ki.brod.width * 12 / 10, ki.brod.height * 12 / 10, 0, 0, 253, 587, ki.brod.flip(), false);
         }
         btnEXIT.font.draw(ki.batch, btnEXIT.text, btnEXIT.x*500/251, btnEXIT.y);
         ki.batch.end();

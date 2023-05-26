@@ -61,7 +61,7 @@ public class Brod {
 
     public void goTo(float tx) {
         target = tx;
-        speed = 7;
+        speed = 5;
         state = GO;
         if (tx > x) {
             direct = RIGHT;
@@ -83,7 +83,7 @@ public class Brod {
     }
 
     boolean overlap(Kamen kamen){
-        return ((kamen.getX() + kamen.width > x - width/4 && kamen.getX() + kamen.width < x + width/4) || (kamen.getX() > x - width/4 && kamen.getX() < x + width/4)) && kamen.getY() < y + height + 120 && kamen.getY() > y + 120;
+        return ((kamen.getX() + kamen.width > x - width/4 && kamen.getX() + kamen.width < x + width/4) || (kamen.getX() > x - width/4 && kamen.getX() < x + width/4) || (kamen.getX() < x - width/4 && kamen.getX() + kamen.width > x + width/4)) && kamen.getY() < y + height + 120 && kamen.getY() > y + 120;
     }
 }
 

@@ -57,7 +57,7 @@ public class ScreenZamok implements Screen {
         ki.screenDomStarika.n = 4;
         ki.screenDomStarika.dialog = true;
 
-        if(chislo1 == 6 && chislo2 == 8 && chislo3 == 6 && chislo4 == 9){
+        if(chislo1 == 6 && chislo2 == 9 && chislo3 == 6 && chislo4 == 8){
             ki.setScreen(ki.screenPogrebOne);
         }
 

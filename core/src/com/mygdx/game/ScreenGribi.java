@@ -128,7 +128,7 @@ public class ScreenGribi implements Screen {
         ///////////////////////////////////////////////////////////////////////////////////
         ki.batch.draw(imgLitva1, 0, 92, SCR_WIDTH, 83); //листва переднего плана
 
-        ki.batch.draw(ki.imgBrod[ki.brod.faza], ki.brod.x-80, 70, ki.brod.width*12/10, ki.brod.height*12/10, 0, 0, 253, 587, ki.brod.flip(), false);
+        ki.batch.draw(ki.imgBrod[ki.brod.faza], ki.brod.x - ki.brod.width/2, 70, ki.brod.width*12/10, ki.brod.height*12/10, 0, 0, 253, 587, ki.brod.flip(), false);
         btnEXIT.font.draw(ki.batch, btnEXIT.text, btnEXIT.x*500/251, btnEXIT.y);
         if(sobralGrib1 && sobralGrib2 && sobralGrib3 && sobralGrib4 && sobralGrib5 && sobralGrib6){
             ki.skolkoFONT.draw(ki.batch, text, SCR_WIDTH/2-350, 1050);

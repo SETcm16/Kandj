@@ -90,7 +90,7 @@ public class ScreenUlitsa implements Screen{
         if(ki.brod.x < 1220 && ki.brod.x > 1080 && ki.touch.x > 1080 && ki.touch.x < 1220){
             ki.dverFONT.draw(ki.batch, text2, 1050, 650);
         }
-        ki.batch.draw(ki.imgBrod[ki.brod.faza], ki.brod.getX(), ki.brod.y, ki.brod.width, ki.brod.height, 0, 0, 253, 587, ki.brod.flip(), false);
+        ki.batch.draw(ki.imgBrod[ki.brod.faza], ki.brod.x, 176, ki.brod.width, ki.brod.height, 0, 0, 253, 587, ki.brod.flip(), false);
         btnEXIT.font.draw(ki.batch, btnEXIT.text, btnEXIT.x*500/251, btnEXIT.y);
         ki.batch.end();
 
